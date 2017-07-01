@@ -121,9 +121,9 @@ var n = 0;
                 }
                 else{
                     window.setInterval("datos()", 1000);
-                    $('#imagen').attr("src", local() + '/../uploads/' + data[i].img);
-                    $('#imgSalida').attr("src", local() + '/../uploads/' + data[i].img);
-                    $("#file").attr("src", local() + '/../uploads/' + data[i].img);
+                    $('#imagen').attr("src", '/../uploads/' + data[i].img);
+                    $('#imgSalida').attr("src", '/../uploads/' + data[i].img);
+                    $("#file").attr("src", '/../uploads/' + data[i].img);
                     $("#nombre").val(data[i].nombre);
                     $("#Es_name").append("<span style='color: #008fb3;'>"+data[i].nombre+"</span>");
                     $("#Es_soy").append("<span style='color: #008fb3;'>"+data[i].info+"</span>");
@@ -252,7 +252,7 @@ $(document).ready(function () {
                     trainer = '<div class="col-md-4"> ' +
                         '<div class="card hovercard"> ' +
                         '<div class="cardheader"> </div> ' +
-                        '<div class="avatar"> <img alt="" src="../Fitpersonal/uploads/' + data[i].img + '"> </div> ' +
+                        '<div class="avatar"> <img alt="" src="../uploads/' + data[i].img + '"> </div> ' +
                         '<div class="info"> <div class="title"> ' +
                         '<a target="_blank" href="" style="color: rgba(106,106,106,0.8);">' + data[i].nombre + '</a></div> ' +
                         '<div class="desc" style="color: rgba(106,106,106,0.8);">Celular: ' + data[i].telefono + '</div> ' +
