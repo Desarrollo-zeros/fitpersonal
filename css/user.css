@@ -1,0 +1,9 @@
+.control-label{
+    font-size: 15px !important;
+    color: black !important;
+}
+
+textarea {
+    box-sizing: border-box;
+    resize: none;
+}

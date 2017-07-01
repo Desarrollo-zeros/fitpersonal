@@ -1,0 +1,388 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
+        <link rel="stylesheet" href="https://icomoon.io/app/styles/e3c76055.main.css">
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+        <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+        <link rel="stylesheet" href="<?=base_url("css/perfil.css");?>">
+        <link rel="stylesheet" href="<?=base_url("css/todo.css");?>">
+        <script type="text/javascript" src="https://limonte.github.io/sweetalert2/dist/sweetalert2.min.js"></script>
+        <link rel="stylesheet" href="https://limonte.github.io/sweetalert2/dist/sweetalert2.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="<?=base_url("js/perfil.js");?>"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="apple-touch-icon" sizes="57x57" href="<?=base_url("img/apple-icon-57x57.png");?>">
+        <link rel="apple-touch-icon" sizes="60x60" href="<?=base_url("img/apple-icon-60x60.png");?>">
+        <link rel="apple-touch-icon" sizes="72x72" href="<?=base_url("img/apple-icon-72x72.png");?>">
+        <link rel="apple-touch-icon" sizes="76x76" href="<?=base_url("img/apple-icon-76x76.png");?>">
+        <link rel="apple-touch-icon" sizes="114x114" href="<?=base_url("img/apple-icon-114x114.png");?>">
+        <link rel="apple-touch-icon" sizes="120x120" href="<?=base_url("img/apple-icon-120x120.png");?>">
+        <link rel="apple-touch-icon" sizes="144x144" href="<?=base_url("img/apple-icon-144x144.png");?>">
+        <link rel="apple-touch-icon" sizes="152x152" href="<?=base_url("img/apple-icon-152x152.png");?>">
+        <link rel="apple-touch-icon" sizes="180x180" href="<?=base_url("img/apple-icon-180x180.png");?>">
+        <link rel="icon" type="image/png" sizes="192x192" href="<?=base_url("img/android-icon-192x192.png");?>">
+        <link rel="icon" type="image/png" sizes="32x32" href="<?=base_url("img/favicon-32x32.png");?>">
+        <link rel="icon" type="image/png" sizes="96x96" href="<?=base_url("img/favicon-96x96.png");?>">
+        <link rel="icon" type="image/png" sizes="16x16" href="<?=base_url("img/favicon-16x16.png");?>">
+        <link rel="manifest" href="<?=base_url("img/manifest.json");?>">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="<?=base_url("img/ms-icon-144x144.png");?>">
+        <meta name="theme-color" content="#ffffff">
+        <link rel="stylesheet" href="<?=base_url("css/custom.css");?>" type="text/css" media="screen" />
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3mobile.css">
+        <link href="http://spinningcentergym.com/wp-content/themes/spinning/css/custom.css" rel="stylesheet" type="text/css" />
+        <title>FitPersonal</title>
+    </head>
+
+        <?php
+
+        if($validar=="1"){
+            echo "<body onload='return alerta()'></body>";
+        }
+        else if($validar=="2"){
+            echo "<body onload='return login()'></body>";
+        }
+        else if($validar=="3"){
+            echo "<body onload='return cuidado()'></body>";
+        }
+        else if($validar =="4"){
+            echo "<body onload='return noExiste()'></body>";
+        }
+        ?>
+
+
+    <header class="bloque">
+
+        <!--Banda nav top-->
+        <div class="nav-top bloque">
+            <div class="bg-triangulo">
+                <div class="social">
+                    <ul>
+                        <li><a href="https://www.facebook.com/FitPersonal01/" target="_blank" title="Seguir a Fitpersonal en Facebook"><i class="fa fa-facebook"></i></a></li>
+                      <!--  <li><a href="https://twitter.com/sportlife_es" target="_blank" title="Seguir a Sportlife en Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://plus.google.com/+SportlifeEs" target="_blank" title="Seguir a Sportlife en Google Plus"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="https://www.instagram.com/sportlife.es/" target="_blank" title="Seguir a Sportlife en Instagram"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="https://www.youtube.com/channel/UCoL9gCEsV2p6JfRfQ-8sV9w/videos" target="_blank" title="Seguir a Sportlife en Youtube"><i class="fa fa-youtube"></i></a></li>
+                        <li><a href="http://api.motorpress-iberica.es/rss/sportlife" target="_blank" title="Rss Sportlife"><i class="fa fa-rss"></i></a></li> -->
+                    </ul>
+                </div>
+
+                <!--Usuarios-->
+                <div class="usuarios">
+                    <ul>
+                        <?php
+                        if(!empty($_SESSION['email'])){
+                            echo "<li><a href=".base_url('/dashboard')."><i class=\"fa fa-power-off\" aria-hidden=\"true\"></i>Panel</a></li><li>/</li>";
+                            echo "<li><a href=".base_url('/dashboard/logout')."><i class=\"fa fa-power-off\" aria-hidden=\"true\"></i>Cerrar Sesión</a></li><li>/</li>";
+                        }
+                        else{
+                           echo "<li><a id=\"login\"><i class=\"fa fa-power-off\" aria-hidden=\"true\"></i>Iniciar sesión O Registrar</a></li><li>/</li>";
+                        }
+
+                        ?>
+                            </ul>
+                </div>
+                <!--Fin usuarios-->
+            </div>
+            <!--Logo sports-->
+            <div class="logo-sports"><a href="" title="FitPersonal" target="_blank"><img src="<?=base_url("/img/FITPERSONAL.png");?>" style="width: 100px;"  alt="Logo Motorpress Ibérica Sports"></a></div>
+            <!--Fin logo sports-->
+
+        </div>
+        <!--Fin Banda nav top-->
+
+        <!--Header inferior-->
+        <div class="header-logo bloque">
+            <div class="container">
+
+                <!--Logo-->
+                <div class="logo"><a href="" title="Sportlife"><img src="<?=base_url("/img/FITPERSONAL.png");?>" style="width: 200px;" alt="Logo Sportlife" title="Logo Sportlife"></a></div>
+                <!--Fin logo-->
+
+            </div>
+        </div>
+        <!--Fin header inferior-->
+
+        <!--Menu-->
+        <div id="menu">
+            <div class="container">
+                <ul class="nav">
+                    <li class="dropdown">     <a href="#" class="active" class="dropdown-toggle" data-toggle="dropdown">Planes
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu" >
+                            <li><a  id="P1" href="#" class="ulT">Planes individual</a></li>
+                            <li><a  id="P2" href="#" class="ulT">Planes Grupal de 3</a></li>
+                            <li><a  id="P3" href="#" class="ulT">Planes Grupal de 5</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">        <a id="trainer" href="#" class="active">Entrenadores</a>
+                    </li>
+                    <li class="dropdown">        <a href="">Retos semanales</a>
+                    </li>
+                    <li class="dropdown">        <a href="">Dietas y Nutrición</a>
+                    </li>
+                    <li class="dropdown">        <a href="">Noticias</a>
+                    </li>
+                    <li class="dropdown">        <a href="">Calculadoras</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+        <!--Submenu móvil-->
+        <div id="submenu-movil" class="bloque">
+            <div class="container">
+                <ul class="nav">
+                    <li class="dropdown">     <a href="#" class="active" class="dropdown-toggle" data-toggle="dropdown">Planes
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu" >
+                            <li><a  id="P1" href="#" class="ulT">Planes individual</a></li>
+                            <li><a  id="P2" href="#" class="ulT">Planes Grupal de 3</a></li>
+                            <li><a  id="P3" href="#" class="ulT">Planes Grupal de 5</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">        <a id="trainer" href="#" class="active">Entrenadores</a>
+                    </li>
+                    <li class="dropdown">        <a href="">Retos semanales</a>
+                    </li>
+                    <li class="dropdown">        <a href="">Dietas y Nutrición</a>
+                    </li>
+                    <li class="dropdown">        <a href="">Noticias</a>
+                    </li>
+                    <li class="dropdown">        <a href="">Calculadoras</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+
+
+    </header>
+
+
+
+        <div class="img"></div>
+
+        <div id="login_modal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+             <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="panel panel-login">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <a href="#" class="active" id="login-form-link">Iniciar Sección</a>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <a href="#" id="register-form-link">Registrar</a>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <form id="login-form" class="login-form" action="" method="post" role="form" style="display: block;">
+                                            <div class="form-group">
+                                                <input type="text" name="usuario" id="usuario" tabindex="1" class="form-control" placeholder="Usuario" value="" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" name="password" id="password" class="form-control" placeholder="Contraseña">
+                                            </div>
+                                            <div class="form-group text-center">
+                                                <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+                                                <label for="remember"> Recordar mi Contraseña</label>
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-3">
+                                                        <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Iniciar Sección">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <form id="register-form" class="register-form" action="" method="post" role="form" style="display: none;">
+                                            <div class="form-group">
+                                                <input type="text" name="username1" id="username1" tabindex="1" class="form-control" placeholder="Usuario" value="" required>
+                                                <div class="jsError"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="email" name="email1" id="email1" tabindex="1" class="form-control" placeholder="Correo electronico" value="" required>
+                                                <div class="jsError1"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" name="password1" id="password1" tabindex="2" class="form-control" placeholder="Contraseña" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirmar Contraseña" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <select id="CE" name="CE" class="col-sm-12" >
+                                                    <option value="Cliente">Cliente</option>
+                                                    <option value="Entrenador">Entrenador</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-3">
+                                                        <br>
+                                                        <br>
+                                                        <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Registrar ahora">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="text-center">
+                                                        <a href="#" class="active" id="recuperar">Olvidaste tu contraseña?</a>
+                                                        <hr>
+                                                        <a href="#" class="active" id="codigo">Tengo Un codigo</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+        </div>
+
+        <div class="modal fade" id="Precios1" role="dialog">
+               <div class="modal-dialog modal-lg" style="position: relative; top: 200px;">
+                   <div style="background-color: rgba(106,0,8,0);" class="well">
+                       <h3 class="text-center" style="color: white;">PLAN INDIVIDUAL</h3>
+                       <div class="container">
+                           <div class="row center-block">
+                               <div class="col-sm-12 center-block">
+                                    <form method="post" class="formu-pago" action="">
+                                        <label class="precio titulo-precio">dia</label>
+                                        <label class="precio">$ 12.000</label>
+                                        <input name="precio" type="hidden" value="12000">
+                                        <input type="submit" value="Submit" class="mix-ciudad circulo">
+                                    </form>
+                                    <form method="post" class="formu-pago" action="">
+                                        <label class="precio titulo-precio">Semana</label>
+                                        <label class="precio">$ 55,000</label>
+                                        <input name="precio" type="hidden" value="55000">
+                                        <input type="submit" value="Submit" class="mix-ciudad circulo">
+                                    </form>
+                                    <form method="post" class="formu-pago" action="">
+                                        <label class="precio titulo-precio">Quincenal</label>
+                                        <label class="precio">$ 110,000</label>
+                                        <input name="precio" type="hidden" value="110000">
+                                        <input type="submit" value="Submit" class="mix-ciudad circulo">
+                                    </form>
+                                    <form method="post" class="formu-pago" action="">
+                                        <label class="precio titulo-precio">Mensual</label>
+                                        <label class="precio">$ 220,000</label>
+                                        <input name="precio" type="hidden" value="220000">
+                                        <input type="submit" value="Submit" class="mix-ciudad circulo">
+                                    </form>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+        </div>
+
+
+    <div class="modal fade" id="Precios2" role="dialog">
+        <div class="modal-dialog modal-lg" style="position: relative; top: 200px;">
+            <div style="background-color: rgba(106,0,8,0);" class="well">
+                <h3 class="text-center" style="color: white;">PLAN GRUPO DE 3</h3>
+                <div class="container">
+                    <div class="row center-block">
+                        <div class="col-sm-12 center-block">
+                            <form method="post" class="formu-pago" action="">
+                                <label class="precio titulo-precio">dia</label>
+                                <label class="precio">$ 30.000</label>
+                                <input name="precio" type="hidden" value="30000">
+                                <input type="submit" value="Submit" class="mix-ciudad circulo">
+                            </form>
+                            <form method="post" class="formu-pago" action="">
+                                <label class="precio titulo-precio">Semana</label>
+                                <label class="precio">$140.000</label>
+                                <input name="precio" type="hidden" value="140000">
+                                <input type="submit" value="Submit" class="mix-ciudad circulo">
+                            </form>
+                            <form method="post" class="formu-pago" action="">
+                                <label class="precio titulo-precio">Quincenal</label>
+                                <label class="precio">$ 280.000</label>
+                                <input name="precio" type="hidden" value="280000">
+                                <input type="submit" value="Submit" class="mix-ciudad circulo">
+                            </form>
+                            <form method="post" class="formu-pago" action="">
+                                <label class="precio titulo-precio">Mensual</label>
+                                <label class="precio">$ 550.000</label>
+                                <input name="precio" type="hidden" value="550000">
+                                <input type="submit" value="Submit" class="mix-ciudad circulo">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="Precios3" role="dialog">
+        <div class="modal-dialog modal-lg" style="position: relative; top: 200px;">
+            <div style="background-color: rgba(106,0,8,0);" class="well">
+                <h3 class="text-center" style="color: white;">PLAN GRUPO DE 5</h3>
+                <div class="container">
+                    <div class="row center-block">
+                        <div class="col-sm-12 center-block">
+                            <form method="post" class="formu-pago" action="">
+                                <label class="precio titulo-precio">dia</label>
+                                <label class="precio">$ 40.000</label>
+                                <input name="precio" type="hidden" value="40000">
+                                <input type="submit" value="Submit" class="mix-ciudad circulo">
+                            </form>
+                            <form method="post" class="formu-pago" action="">
+                                <label class="precio titulo-precio">Semana</label>
+                                <label class="precio">$190.000</label>
+                                <input name="precio" type="hidden" value="190000">
+                                <input type="submit" value="Submit" class="mix-ciudad circulo">
+                            </form>
+                            <form method="post" class="formu-pago" action="">
+                                <label class="precio titulo-precio">Quincenal</label>
+                                <label class="precio">$ 370.000</label>
+                                <input name="precio" type="hidden" value="370000">
+                                <input type="submit" value="Submit" class="mix-ciudad circulo">
+                            </form>
+                            <form method="post" class="formu-pago" action="">
+                                <label class="precio titulo-precio">Mensual</label>
+                                <label class="precio">$ 820.000</label>
+                                <input name="precio" type="hidden" value="820000">
+                                <input type="submit" value="Submit" class="mix-ciudad circulo">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div id="entrenadores"></div>
+
+    </body>
+</html>
+
