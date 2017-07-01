@@ -121,9 +121,9 @@ var n = 0;
                 }
                 else{
                     window.setInterval("datos()", 1000);
-                    $('#imagen').attr("src", '/../uploads/' + data[i].img);
-                    $('#imgSalida').attr("src", '/../uploads/' + data[i].img);
-                    $("#file").attr("src", '/../uploads/' + data[i].img);
+                    $('#imagen').attr("src", '../uploads/' + data[i].img);
+                    $('#imgSalida').attr("src", '../uploads/' + data[i].img);
+                    $("#file").attr("src", '../uploads/' + data[i].img);
                     $("#nombre").val(data[i].nombre);
                     $("#Es_name").append("<span style='color: #008fb3;'>"+data[i].nombre+"</span>");
                     $("#Es_soy").append("<span style='color: #008fb3;'>"+data[i].info+"</span>");
