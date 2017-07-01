@@ -480,8 +480,8 @@
     <img src="images/FITPERSONAL.png" width="200" alt="Logo" />
     <!-- Copyright -->
     <p class="copyright normal">© 2017 <span class="colored"><a href="https://www.facebook.com/wowzeros/" target="_blank" class="social">Dev Zeros.</a></span>Todos los derechos reservados.</p>
-    <hr>
-    <img src="img/apps.co.jpg"  alt="Logo" />
+    <br>
+    <a class="active"  target="_blank" href="http://www.mareadigital.co/"><img src="img/apps.co.jpg" class="logo" width="900" alt="Logo" /></a>
 </footer><!-- End Footer -->
 
 <!-- JS Files -->
