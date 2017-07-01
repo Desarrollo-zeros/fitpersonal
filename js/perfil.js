@@ -1,9 +1,5 @@
 
-function local() {
-    var loc = window.location;
-    var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
-    return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
-}
+
 
 $(document).ready(function () {
     $("#login").click(function () {
@@ -41,7 +37,7 @@ $(function() {
                     setTimeout(function() {
                         $.ajax({
                                 type: "POST",
-                                url: local()+"F/change_password",
+                                url: "F/change_password",
                                 data: 'email='+email,
                                 success: function(data){
                                    if(data==="si"){
@@ -108,7 +104,7 @@ $(function() {
                         setTimeout(function () {
                             $.ajax({
                                 type: "POST",
-                                url: local()+"F/buscar_email",
+                                url: "F/buscar_email",
                                 data: {
                                     "email": email1,
                                     "codigo": cod,
@@ -145,7 +141,7 @@ $(function() {
 $(document).ready(function(){
     $('form.login-form').on('submit', function(form){
         form.preventDefault();
-                $.post(local()+'F/login', $('form.login-form').serialize(), function(data){
+                $.post('F/login', $('form.login-form').serialize(), function(data){
                     if(data === "Su cuenta no esta activa"){
                         swal("Cuidado","Su cuenta existe pero a un no esta activa debes ir a tu correo eletronico y completar el registro","warning");
                     }
@@ -154,10 +150,10 @@ $(document).ready(function(){
                     }
                     else{
                         if(data==="Cliente"){
-                            window.location.href=local()+'dashboard';
+                            window.location.href='dashboard';
                         }
                         else{
-                            window.location.href=local()+'dashboard';
+                            window.location.href='dashboard';
                         }
 
                     }
@@ -188,7 +184,7 @@ $(document).ready(function(){
                 confirmButtonText: 'Si, Registarme ahora!',
                 cancelButtonText: "No"
             }).then(function () {
-                $.post(local()+'F/registrar', $('form.register-form').serialize(), function(data){
+                $.post('F/registrar', $('form.register-form').serialize(), function(data){
                     if(data === ",registrado"){
                         swal("Registro!",""+$("#username1").val()+" Debes entrar al correo "+$("#email1").val()+" y completar el registro");
                         console.log(data);
@@ -207,7 +203,7 @@ $(document).ready(function(){
 
 function alerta() {
     swal('Registro completo', 'El registro se ha completado con exitos, ya puedes iniciar seccion en breve seras redireccionado', 'success');
-    setTimeout("window.location.href=local()+'f?id=2';", 5000);
+    setTimeout("window.location.href='f?id=2';", 5000);
 }
 
 function login() {
@@ -259,7 +255,7 @@ $(document).ready(function () {
     $.ajax({
         type: "POST",
         dataType: "JSON",
-        url: "http://localhost/Fitpersonal/f/planes",
+        url: "f/planes",
         success: function(data) {
             for (var i in data) {
                if(data[i].grupo ==1){
@@ -294,7 +290,7 @@ $(document).ready(function () {
         data:{
             id: "1"
         },
-        url: "http://localhost/Fitpersonal/f/Mostrar_trainer",
+        url: "f/Mostrar_trainer",
         success: function(data) {
             for (var i in data) {
                 if(data[i].status==="3") {
@@ -329,7 +325,7 @@ $(document).ready(function () {
         data:{
             id: "1"
         },
-        url: "http://localhost/Fitpersonal/f/salud",
+        url: "f/salud",
         success: function(data) {
             for (var i in data) {
 

@@ -1,11 +1,5 @@
 
 
-function local() {
-    var loc = window.location;
-    var pathName = loc.pathname.substring(0, loc.pathname.lastIndexOf('/') + 1);
-    return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));
-}
-
 $(document).ready(function(){
 $(function() {
     $('#file').change(function(e) {
@@ -49,11 +43,11 @@ $(document).ready(function(){
     $('form.jsform').on('submit', function(form){
         form.preventDefault();
         if($("#id_trainer").val().length>0){
-            var url = local()+"dashboard/Editar";
+            var url = "dashboard/Editar";
             var titulo = "Editar";
         }
         else{
-            var url = local()+"/dashboard/Guardar";
+            var url = "dashboard/Guardar";
             var titulo = "Guardar";
             var status = "1";
         }
@@ -99,7 +93,7 @@ var n = 0;
     $.ajax({
         type: "POST",
         dataType: "JSON",
-        url: local()+"/dashboard/datos",
+        url: "dashboard/datos",
         success: function(data) {
             for (var i in data) {
                 if(data[i].rango != null) {
@@ -186,7 +180,7 @@ function datos() {
     $.ajax({
             type: "POST",
             dataType: "JSON",
-            url: local()+"/dashboard/datos",
+            url: "dashboard/datos",
             success: function(data){
                 for(var i in data) {
                     if(data[i].rango === null){
@@ -252,7 +246,7 @@ $(document).ready(function () {
         data:{
             id: "1"
         },
-        url: "http://localhost/Fitpersonal/dashboard/Mostrar_trainer",
+        url: "dashboard/Mostrar_trainer",
         success: function(data) {
             for (var i in data) {
                     trainer = '<div class="col-md-4"> ' +
