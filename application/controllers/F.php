@@ -110,7 +110,6 @@ class F extends CI_Controller
                 $this->email->message('<h2><a class="btn-success" href="'.base_url("").'?id=' . $user . $email . '&email='.$correo.'">click para completar registro</a></h2>');
                 $this->email->send();
                 echo $this->acc->insert($data);
-                echo $this->email->print_debugger();
             }
         }
     }

@@ -1,5 +1,4 @@
 
-
 $(document).ready(function(){
 $(function() {
     $('#file').change(function(e) {
@@ -96,7 +95,7 @@ var n = 0;
         url: "dashboard/datos",
         success: function(data) {
             for (var i in data) {
-                if(data[i].rango != null) {
+                if(data[i].rango > 0 ) {
                     if (data[i].rango.length > 0) {
                         $("#Es_name").append("<span style='color: #008fb3;'>" + data[i].account + "</span>");
                         $("#Es_soy").append("<span style='color: #008fb3;'>" + data[i].email + "</span>");
@@ -121,7 +120,7 @@ var n = 0;
                 }
                 else{
                     window.setInterval("datos()", 1000);
-                    $('#imagen').attr("src", '/uploads/' + data[i].img);
+                    $('#imagen').attr("src", 'uploads/' + data[i].img);
                     $('#imgSalida').attr("src", 'uploads/' + data[i].img);
                     $("#file").attr("src", 'uploads/' + data[i].img);
                     $("#nombre").val(data[i].nombre);
@@ -181,40 +180,35 @@ function datos() {
             type: "POST",
             dataType: "JSON",
             url: "dashboard/datos",
-            success: function(data){
-                for(var i in data) {
-                    if(data[i].rango === null){
-                        if (data[i].status === "1") {
-                            $("#Es").empty();
-                            $("#Es").append("<span style='color: #0eaeff;'>Sin Revisar</span>");
-                            $("#estado").click(function () {
-                                $("#estado").val(swal("Estado Entrenador", "Sin Revisar", "question"));
-                            });
-                        }
-                        else if (data[i].status === "2") {
-                            $("#Es").empty();
-                            $("#Es").append("<span style='color: #ffc000;'>En Revision</span>");
-                            $("#estado").click(function () {
-                                $("#estado").val(swal("Estado Entrenador", "En Revisar", "warning"));
-                            });
-                        }
-                        else if (data[i].status === "3") {
-                            $("#Es").empty();
-                            $("#Es").append("<span style='color: #29ff10;'>Aceptado</span>");
-                            $("#estado").click(function () {
-                                $("#estado").val(swal("Estado Entrenador", "Aceptado", "success"));
-                            });
-                        }
-                        else {
-                            $("#Es").empty();
-                            $("#Es").append("<span style='color: #ff0003;'>Negado</span>");
-                            $("#estado").click(function () {
-                                swal("Estado Entrenador", "Negado", "error")
-                            });
-                        }
+            success: function(data) {
+                for (var i in data) {
+                    if (data[i].status == 1) {
+                        $("#Es").empty();
+                        $("#Es").append("<span style='color: #0eaeff;'>Sin Revisar</span>");
+                        $("#estado").click(function () {
+                            $("#estado").val(swal("Estado Entrenador", "Sin Revisar", "question"));
+                        });
                     }
-                    else{
-
+                    else if (data[i].status == 2) {
+                        $("#Es").empty();
+                        $("#Es").append("<span style='color: #ffc000;'>En Revision</span>");
+                        $("#estado").click(function () {
+                            $("#estado").val(swal("Estado Entrenador", "En Revisar", "warning"));
+                        });
+                    }
+                    else if (data[i].status == 3) {
+                        $("#Es").empty();
+                        $("#Es").append("<span style='color: #29ff10;'>Aceptado</span>");
+                        $("#estado").click(function () {
+                            $("#estado").val(swal("Estado Entrenador", "Aceptado", "success"));
+                        });
+                    }
+                    else {
+                        $("#Es").empty();
+                        $("#Es").append("<span style='color: #ff0003;'>Negado</span>");
+                        $("#estado").click(function () {
+                            swal("Estado Entrenador", "Negado", "error")
+                        });
                     }
                 }
             }
@@ -238,17 +232,56 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     var trainer = "";
-    var status = "si";
-    var hj = "no";
-    $.ajax({
-        type: "POST",
-        dataType: "JSON",
-        data:{
-            id: "1"
-        },
-        url: "dashboard/Mostrar_trainer",
-        success: function(data) {
-            for (var i in data) {
+    var status = "";
+    var estado = "";
+    var estado1 = "";
+    var clas = "";
+    var negar = "";
+    var clas1 = "";
+
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            data:{
+                id: "1"
+            },
+            url: "dashboard/Mostrar_trainer",
+            success: function(data) {
+                for (var i in data) {
+                if(data[i].borrar == 0){
+                    if(data[i].status == 1){
+                        status = "";
+                        estado = "";
+                        estado1 = "Contratar entrenador"
+                        clas = "btn btn-primary btn-round";
+                        clas1 = "";
+                        negar = "";
+                    }
+                    else if(data[i].status == 2){
+                        status = "";
+                        estado = "";
+                        estado1 = "Contratar entrenador"
+                        clas = "btn btn-primary btn-round";
+                        clas1 = "btn btn-danger btn-round";
+                        negar = "Negar Contracto";
+                    }
+                    else if(data[i].status == 3){
+                        status = "btn btn-success  btn-round";
+                        estado = "Aceptado,  desea cancelar contracto";
+                        estado1 = ""
+                        clas = "";
+                        clas1 = "";
+                        negar = "";
+                    }
+                    else if(data[i].status  == 0){
+                        status = "";
+                        estado = "";
+                        clas1 = "btn-round btn btn-deafault";
+                        negar = "Estado del contracto Negado";
+                        estado1 = "Contratar entrenador"
+                        clas = "btn btn-primary btn-round";
+
+                    }
                     trainer = '<div class="col-md-4"> ' +
                         '<div class="card hovercard"> ' +
                         '<div class="cardheader"> </div> ' +
@@ -258,22 +291,114 @@ $(document).ready(function () {
                         '<div class="desc" style="color: rgba(106,106,106,0.8);">Celular: ' + data[i].telefono + '</div> ' +
                         '<div class="desc" style="color: rgba(106,106,106,0.8);">Correo: ' + data[i].email + '</div> ' +
                         '<div class="desc" style="color: rgba(106,106,106,0.8);">Horario Disponible: ' + data[i].horario_disponible + '</div>' +
-                        '<div class="desc" style="color: rgba(106,106,106,0.8);">Dias Disponible: ' + data[i].dia_disponible + '</div></div> ' +
-                        '<a href="#" id="estado_entrenador"  onclick="estado('+data[i].status+')" class="btn btn-success btn-round">Estado</a><a href="#" id="HJ" class="btn btn-info btn-round" onclick="HJ('+data[i].id+')">Ver Hoja de vida</a></div>';
-                    $("#entrenador").append(trainer);
+                        '<div class="desc" style="color: rgba(106,106,106,0.8);">Estado civil: ' + data[i].estado_civil + '</div>' +
+                        '<div class="desc" style="color: rgba(106,106,106,0.8);">Horario Disponible: ' + data[i].horario_disponible + '</div>' +
+                        '<div class="desc" style="color: rgba(106,106,106,0.8);">Dias Disponible: ' + data[i].dia_disponible + ' </div>'+
+                        '<div class="desc" style="color: rgba(106,106,106,0.8);">Ciudad: ' + data[i].ciudad + '</div>' +
+                        '<div class="desc" style="color: rgba(106,106,106,0.8);">Departamento: ' + data[i].departamento + '</div>' +
+                        '<div class="desc" style="color: rgba(106,106,106,0.8);">Estudio: ' + data[i].estudio + '</div>' +
+                        '<div class="desc" style="color: rgba(106,106,106,0.8);">Titulos: ' + data[i].titulo + '</div>' +
+                        '<div class="desc" style="color: rgba(106,106,106,0.8);">Titulo Deportivo: ' + data[i].titulo_deportivo + '</div>' +
+                        '<div class="desc" style="color: rgba(106,106,106,0.8);">Empresa ' + data[i].empresa1 + '</div>' +
+                        '<div class="desc" style="color: rgba(106,106,106,0.8);">cargo   ' + data[i].cargo1 + '</div></div> ' +
+                        '<a href="#" id="estado_entrenador"  onclick="negar(' + data[i].id + ')" class="' + status + '">'+estado+'</a><a id="estado1" class="'+clas+'" onclick="contractar(' + data[i].id + ')">'+estado1+'</a><a href="#" onclick="Borrar(' + data[i].id + ')" id="Borrar" class="'+clas1+'">'+negar+'</a></div>';
+                    $("#entrenador").append(trainer)
+                 }
+                }
             }
-        }
-    });
+
+        });
 });
 
-function estado(id) {
-       alert(id);
+
+
+
+function Borrar(id) {
+    swal({
+        title: 'Mensaje',
+        text: "Esta Seguro que desea Eliminar el entrenador!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si!',
+        cancelButtonText: 'No!'
+    }).then(function () {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                id: id
+            },
+            url: "dashboard/borrar",
+            success: function (data) {
+                console.log(data);
+                if(data===1) {
+                    window.location.href = "";
+                }
+            }
+        })
+    })
 
 }
 
-function HJ(id) {
 
-        alert(id);
+
+function contractar(id) {
+    swal({
+        title: 'Mensaje',
+        text: "Esta Seguro que desea contratar este entrenador!?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si!',
+        cancelButtonText: 'No!'
+    }).then(function () {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                id: id
+            },
+            url: "dashboard/contratar",
+            success: function (data) {
+            console.log(data);
+                if(data===1) {
+                    window.location.href = "";
+                }
+            }
+        })
+
+    })
+}
+
+function negar(id) {
+    swal({
+        title: 'Mensaje',
+        text: "Esta Seguro que desea Negar el contracto al entrenador?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si!',
+        cancelButtonText: 'No!'
+    }).then(function () {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                id: id
+            },
+            url: "dashboard/negar",
+            success: function (data) {
+                if(data===1) {
+                    window.location.href = "";
+                }
+            }
+        })
+    })
 
 }
+
 

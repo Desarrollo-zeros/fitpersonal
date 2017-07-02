@@ -14,9 +14,6 @@
     <link href="<?=base_url("css/user.css");?>" rel="stylesheet" />
     <script src="<?=base_url("js/user.js");?>"></script>
     <link rel="stylesheet" href="<?=base_url("css/todo.css");?>">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
     <link rel="apple-touch-icon" sizes="57x57" href="<?=base_url("img/apple-icon-57x57.png");?>">
@@ -238,9 +235,6 @@
                 </div>
             </div>
         </div>
-
-
-
         <footer class="footer">
             <div class="container-fluid">
                 <nav class="pull-left">

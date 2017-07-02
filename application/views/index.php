@@ -9,7 +9,7 @@
     <meta property="og:locale" content="es_ES" >
     <meta property="og:type" content="website" >
     <meta property="og:title" content="iCodeArt" >
-    <meta property="og:description" content="DiseÃ±o web y diseÃ±o grafico,HTML, CSS, JavaScript, PHP, Mysql " >
+    <meta property="og:description" content="Fitpersonal entrenador en casa " >
     <meta property="og:url" content="http://icodeart.com/web" >
     <meta property="og:site_name" content="iCodeArt" >
     <meta property="og:image" content="http://icodeart.com/fb.png" >
@@ -62,7 +62,22 @@
 
 </head>
 
-<body>
+<?php
+
+if($validar=="1"){
+    echo "<body onload='return alerta()'></body>";
+}
+else if($validar=="2"){
+    echo "<body onload='return login()'></body>";
+}
+else if($validar=="3"){
+    echo "<body onload='return cuidado()'></body>";
+}
+else if($validar =="4"){
+    echo "<body onload='return noExiste()'></body>";
+}
+?>
+
 
 <!-- Navigation -->
 <section id="navigation" class="dark-nav">
@@ -78,7 +93,7 @@
         <div class="nav-menu">
             <ul class="nav uppercase">
                 <li><a href="#home" class="scroll"><span class="glyphicon glyphicon-home"></span> Inicio</a></li>
-                <li><a href="#about" class="scroll"><span class="glyphicon glyphicon-info-sign"></span> Quienes Somos?</a></li>
+                <li><a href="#about" class="scroll"><span class="glyphicon glyphicon-info-sign"></span> Quiénes somos</a></li>
                 <li><a href="#features" class="scroll"><span class="glyphicon glyphicon-shopping-cart"></span> Planes</a></li>
                 <li><a href="#trainer" class="scroll"><span class="glyphicon glyphicon-eye-open"></span> Entrenadores</a></li>
                 <li><a href="#salud" class="scroll"><span class="glyphicon glyphicon-shopping-cart"></span> Dietas y Nutrición</a></li>
@@ -89,7 +104,7 @@
                     echo " <li><a href= ".base_url('/dashboard/logout')." class=\"scroll\"><span class=\"glyphicon glyphicon-log-in\"></span> Salir</a></li>";
                 }
                 else{
-                    echo "<li><a id='login'  href='javascript:void(0);' class= 'active'><span class='glyphicon glyphicon-log-in'></span> Iniciar Sesion o Registrar</a></li>";
+                    echo "<li><a id='login'  href='javascript:void(0);' class= 'active'><span class='glyphicon glyphicon-log-in'></span> Iniciar sesión o Registrar</a></li>";
                 }
                 ?>
 
@@ -392,7 +407,7 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-6">
-                                    <a href="#" class="active" id="login-form-link">Iniciar Sección</a>
+                                    <a href="#" class="active" id="login-form-link">Iniciar sesión</a>
                                 </div>
                                 <div class="col-xs-6">
                                     <a href="#" id="register-form-link">Registrar</a>
@@ -455,9 +470,9 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="text-center">
-                                                    <a href="#" class="active" id="recuperar">Olvidaste tu contraseña?</a>
+                                                    <a href="#" class="active text-danger" id="recuperar">Olvidaste tu contraseña?</a>
                                                     <hr>
-                                                    <a href="#" class="active" id="codigo">Tengo Un codigo</a>
+                                                    <a href="#" class="active text-danger" id="codigo">Tengo Un codigo</a>
                                                 </div>
                                             </div>
                                         </div>

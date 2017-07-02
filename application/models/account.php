@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this -> db -> from('account');
             $this -> db -> where('account', $id);
             if($this->db->count_all_results() > 0){
-                return "<h6 class='text-center'>El usuario ingresado ya existe,</h6>";
+                return "El usuario ingresado ya existe,";
             }
             else{
                 return ",";
@@ -44,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this -> db -> from('account');
             $this -> db -> where('email', $id);
             if($this->db->count_all_results() >0){
-                return "<h6 class='text-center'>El correo ingresado ya existe</h6>";
+                return "El correo ingresado ya existe";
             }
             else{
                 return "";
@@ -254,4 +254,47 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $query = $this->db->get();
             return $query->result_array();
         }
+
+        public function contratar($id){
+            setlocale (LC_TIME, "es_CO");
+            date_default_timezone_set('America/Bogota');
+            $this->db->select("*");
+            $this->db->from("datos_entrenador");
+            $this->db->where('id', $id);
+            if ($this->db->count_all_results() > 0) {
+                $this->db->where('id', $id);
+                $data = array("status " => "3", "fecha_contracto" => date("F j, Y, g:i a"));
+               return  $this->db->update("datos_entrenador", $data);
+            }
+        }
+
+        public function negar($id){
+            setlocale (LC_TIME, "es_CO");
+            date_default_timezone_set('America/Bogota');
+            $this->db->select("*");
+            $this->db->from("datos_entrenador");
+            $this->db->where('id', $id);
+            $this->db->where('status', "3");
+            if ($this->db->count_all_results() > 0) {
+                $this->db->where('id', $id);
+                $data = array("status " => "0", "fecha_negado" => date("F j, Y, g:i a"));
+                return  $this->db->update("datos_entrenador", $data);
+            }
+        }
+
+
+        public function borrar($id){
+            setlocale (LC_TIME, "es_CO");
+            date_default_timezone_set('America/Bogota');
+            $this->db->select("*");
+            $this->db->from("datos_entrenador");
+            $this->db->where('id', $id);
+            $this->db->where('status', "0");
+            if ($this->db->count_all_results() > 0) {
+                $this->db->where('id', $id);
+                $data = array("status " => "0", "fecha_borrado" => date("F j, Y, g:i a"), "borrar" => 1);
+                return  $this->db->update("datos_entrenador", $data);
+            }
+        }
+
     }

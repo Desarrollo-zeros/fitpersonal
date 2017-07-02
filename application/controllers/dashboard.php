@@ -223,6 +223,26 @@ class dashboard extends CI_Controller
         redirect('');
     }
 
+    public function contratar(){
+        if (!empty($this->input->post("id"))) {
+            echo $this->acc->contratar($this->input->post("id"));
+        }
+    }
+
+    public function negar(){
+        if (!empty($this->input->post("id"))) {
+            echo $this->acc->negar($this->input->post("id"));
+        }
+    }
+
+    public function borrar(){
+        if (!empty($this->input->post("id"))) {
+            echo $this->acc->borrar($this->input->post("id"));
+        }
+    }
+
+
+
 
 
 }

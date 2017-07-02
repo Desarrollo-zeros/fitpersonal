@@ -24,7 +24,7 @@ $(document).ready(function () {
                     $("#entrenador").append(trainer);
                 }
                 else{
-                    swal("Mensaje","No hay Entrenadores Disponibles","warning")
+
                 }
             }
         }

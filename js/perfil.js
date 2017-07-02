@@ -247,7 +247,6 @@ $(document).ready(function(){
 
 
 
-
 $(document).ready(function () {
     var plan1 = "";
     var plan2 = "";
@@ -308,7 +307,7 @@ $(document).ready(function () {
                     $("#entrenadores").append(trainer);
                 }
                 else{
-                    swal("Mensaje","No hay Entrenadores Disponibles","warning")
+
                 }
             }
         }
@@ -328,7 +327,6 @@ $(document).ready(function () {
         url: "f/salud",
         success: function(data) {
             for (var i in data) {
-
                     url = '<li class="'+data[i].ac+'" data-target="#carousel-example-generic" data-slide-to="' + data[i].id + '"></li>';
                    noticias = '<div class="item '+data[i].ac+'"><ul> <li class="monial"><h1 class="condensed white">' + data[i].titulo + '</h1> <h1 class="condensed white"><span class="colored">' + data[i].titulo + '</span>' + data[i].text + '</h1><p class="light">Posteado por ' + data[i].admin + '</p></li></ul></div>';
                     $("#url").append(url);

@@ -7,3 +7,14 @@ textarea {
     box-sizing: border-box;
     resize: none;
 }
+
+.glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+
+small {
+    position: relative;
+    top: 100px;
+    display: block;
+    line-height: 1.428571429;
+    color: #999;
+}
+
