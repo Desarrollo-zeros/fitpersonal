@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta property="og:locale" content="es_ES" >
     <meta property="og:type" content="website" >
-    <meta property="og:title" content="iCodeArt" >
+    <meta property="og:title" content="Fitpersonal" >
     <meta property="og:description" content="Fitpersonal entrenador en casa " >
-    <meta property="og:url" content="http://icodeart.com/web" >
-    <meta property="og:site_name" content="iCodeArt" >
-    <meta property="og:image" content="http://icodeart.com/fb.png" >
+    <meta property="og:url" content="http://FitPersonal.ml" >
+    <meta property="og:site_name" content="FitPersonal" >
+    <meta property="og:image" content="https://www.facebook.com/wowzeros/" >
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="460" />
     <meta property="og:image:height" content="260" />
