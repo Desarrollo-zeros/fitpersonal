@@ -220,7 +220,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $this->db->where('id_trainer', $id);
                 $query = $this->db->get();
                 foreach ($query->result() as $row) {
-                    unlink("C:/xampp/htdocs/Fitpersonal/uploads/".$row->img);
+
+                    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+                        unlink("C:/xampp/htdocs/Fitpersonal/uploads/".$row->img);
+                    } else {
+                        unlink("/var/www/html/fitpersonal/uploads/".$row->img);
+                    }
                 }
                 $this->db->where('id_trainer', $id);
                 $insert = $this->db->update("datos_entrenador", $data);

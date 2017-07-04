@@ -93,6 +93,7 @@ class dashboard extends CI_Controller
                 "empresa6" => $this->input->post('empresa6'),
                 "cargo6" => $this->input->post('cargo6'),
                 "tel6" => $this->input->post('tel6'),
+                "info" => $this->input->post('info'),
                 "img" => $this->upload->data('file_name')
             );
 

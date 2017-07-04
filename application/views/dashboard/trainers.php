@@ -379,11 +379,11 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="control-label"><i class="material-icons prefix">description</i>Experiencia Laboral</label>
+                                                <label class="control-label"><i class="material-icons prefix">description</i>Experiencia Laboral Opcional</label>
                                                 <div class="form-group label-floating">
-                                                    Empresa: <input id="empresa2" name="empresa2" placeholder="Nombre de la empresa" type="text" class="form-control" required>
-                                                    Cargo:<input id="cargo2" name="cargo2" placeholder="Cargo" type="text" class="form-control" required>
-                                                    Telefono:<input id="tel2" name="tel2" placeholder="Telefono" type="number" class="form-control" required>
+                                                    Empresa: <input id="empresa2" name="empresa2" placeholder="Nombre de la empresa" type="text" class="form-control">
+                                                    Cargo:<input id="cargo2" name="cargo2" placeholder="Cargo" type="text" class="form-control">
+                                                    Telefono:<input id="tel2" name="tel2" placeholder="Telefono" type="number" class="form-control">
                                                    </div>
                                             </div>
                                         </div>
@@ -393,11 +393,11 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="control-label"><i class="material-icons prefix">description</i>Experiencia Laboral</label>
+                                                <label class="control-label"><i class="material-icons prefix">description</i>Experiencia Laboral Opcional</label>
                                                 <div class="form-group label-floating">
-                                                    Empresa: <input id="empresa3" name="empresa3" placeholder="Nombre de la empresa" type="text" class="form-control" required>
-                                                    Cargo:<input id="cargo3" name="cargo3" placeholder="Cargo" type="text" class="form-control" required >
-                                                    Telefono:<input id="tel3" name="tel3" placeholder="Telefono" type="number" class="form-control" required>
+                                                    Empresa: <input id="empresa3" name="empresa3" placeholder="Nombre de la empresa" type="text" class="form-control">
+                                                    Cargo:<input id="cargo3" name="cargo3" placeholder="Cargo" type="text" class="form-control" >
+                                                    Telefono:<input id="tel3" name="tel3" placeholder="Telefono" type="number" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -407,7 +407,7 @@
                                     <div class="row text-center">
                                         <div class="col-md-12">
                                             <div class="form-group label-floating">
-                                                <label class="control-label col-md-12" style="font-style: italic; font-size: 18px !important;">Experiencia Personales</label>
+                                                <label class="control-label col-md-12" style="font-style: italic; font-size: 18px !important;">Referencias Personales</label>
                                             </div>
                                         </div>
                                     </div>
@@ -416,7 +416,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="control-label"><i class="material-icons prefix">description</i>Experiencia Personales</label>
+                                                <label class="control-label"><i class="material-icons prefix">description</i>Referencia Personales</label>
                                                 <div class="form-group label-floating">
                                                     Empresa: <input id="empresa4" name="empresa4" placeholder="Nombre de la empresa" type="text" class="form-control" required>
                                                     Cargo:<input id="cargo4" name="cargo4" placeholder="Cargo" type="text" class="form-control" required>
@@ -429,11 +429,11 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="control-label"><i class="material-icons prefix">description</i>Experiencia Personales</label>
+                                                <label class="control-label"><i class="material-icons prefix">description</i>Referencia Personal Opcional</label>
                                                 <div class="form-group label-floating">
-                                                    Empresa: <input id="empresa5" name="empresa5" placeholder="Nombre de la empresa" type="text" class="form-control" required>
-                                                    Cargo:<input id="cargo5" name="cargo5" placeholder="Cargo" type="text" class="form-control" required>
-                                                    Telefono:<input id="tel5" name="tel5" placeholder="Telefono" type="number" class="form-control" required>
+                                                    Empresa: <input id="empresa5" name="empresa5" placeholder="Nombre de la empresa" type="text" class="form-control">
+                                                    Cargo:<input id="cargo5" name="cargo5" placeholder="Cargo" type="text" class="form-control">
+                                                    Telefono:<input id="tel5" name="tel5" placeholder="Telefono" type="number" class="form-control">
                                                     </div>
                                             </div>
                                         </div>
@@ -442,11 +442,11 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="control-label"><i class="material-icons prefix">description</i>Experiencia Personales</label>
+                                                <label class="control-label"><i class="material-icons prefix">description</i>Referencia Personal Opcional</label>
                                                 <div class="form-group label-floating">
-                                                    Empresa: <input id="empresa6" name="empresa6" placeholder="Nombre de la empresa" type="text" class="form-control" required>
-                                                    Cargo:<input id="cargo6" name="cargo6" placeholder="Cargo" type="text" class="form-control" required >
-                                                    Telefono:<input id="tel6" name="tel6"  placeholder="Telefono" type="number" class="form-control" required>
+                                                    Empresa: <input id="empresa6" name="empresa6" placeholder="Nombre de la empresa" type="text" class="form-control" >
+                                                    Cargo:<input id="cargo6" name="cargo6" placeholder="Cargo" type="text" class="form-control">
+                                                    Telefono:<input id="tel6" name="tel6"  placeholder="Telefono" type="number" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
