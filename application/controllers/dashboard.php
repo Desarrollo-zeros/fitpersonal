@@ -49,7 +49,7 @@ class dashboard extends CI_Controller
                         $data['valor'] = true;
                     }
                     else{
-                        echo 'Error: '.$this->upload->data('file_name');
+                        echo 'Error: este error ocurrio por motivo de la subida de datos por favor comunicate con el administrador';
                         $data['valor'] = false;
                     }
                 }
@@ -241,9 +241,4 @@ class dashboard extends CI_Controller
             echo $this->acc->borrar($this->input->post("id"));
         }
     }
-
-
-
-
-
 }
