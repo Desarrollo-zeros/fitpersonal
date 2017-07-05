@@ -296,7 +296,7 @@ $(document).ready(function () {
                     trainer = '<div class="col-lg-3 col-sm-6"> ' +
                         '<div class="card hovercard"> ' +
                         '<div class="cardheader"> </div> ' +
-                        '<div class="avatar"> <img alt="" src="uploads/' + data[i].img + '"> </div> ' +
+                        '<div class="avatar"> <img alt="" src="uploads/trainer/' + data[i].img + '"> </div> ' +
                         '<div class="info"> <div class="title"> ' +
                         '<a target="_blank" href="" style="color: rgb(106,106,106);">' + data[i].nombre + '</a></div> ' +
                         '<div class="desc" style="color: rgb(106,106,106);">Celular: ' + data[i].telefono + '</div> ' +

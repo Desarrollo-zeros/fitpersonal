@@ -93,7 +93,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="material-icons">dashboard</i>
                                 <p class="hidden-lg hidden-md">Dashboard</p>
                             </a>
@@ -116,16 +116,13 @@
                         <li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="material-icons">person</i>
+                                <i class="material-icons">person</i>Entrenador
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="">Inicio</a></li>
                                 <li><a href="<?=base_url('dashboard/logout');?>">Cerrar Seccion</a></li>
                             </ul>
                         </li>
-                            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                <p class="hidden-lg hidden-md">Profile</p>
-                            </a>
                         </li>
                     </ul>
 
@@ -154,6 +151,7 @@
                             </div>
                             <div class="card-content">
                                 <form id="form" class="jsform" method="post">
+                                    <input name="usuario_date" id="usuario_date"  type="hidden" value="Entrenador">
                                     <input name="id_trainer" id="id_trainer"  type="hidden" value="">
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
@@ -174,7 +172,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
 
                                     <div class="row">

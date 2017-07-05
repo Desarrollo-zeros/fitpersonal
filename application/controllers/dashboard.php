@@ -28,8 +28,8 @@ class dashboard extends CI_Controller
         }
     }
 
-    public function Guardar(){
-        $config['upload_path'] = 'uploads/';
+    public function Guardar_trainer(){
+        $config['upload_path'] = 'uploads/trainer';
         $config['allowed_types'] = '*';
         $config['max_filename'] = '255';
         $config['encrypt_name'] = TRUE;
@@ -40,10 +40,10 @@ class dashboard extends CI_Controller
             if (0 < $_FILES['file']['error']) {
                 $data['valor'] = false;
             } else {
-                if (file_exists('uploads/' . $_FILES['file']['name'])) {
+                if (file_exists('uploads/trainer/' . $_FILES['file']['name'])) {
                     echo '<div class="succes">Imagen ya existe/'.$_FILES['file']['name'].'</div>';
                 } else {
-                    $this->load->library('upload', $config);
+                    $this->load->library('upload/', $config);
                     if ($this->upload->do_upload('file')) {
                         // echo 'Imagen Guardado con existo : '.$this->upload->data('file_name');
                         $data['valor'] = true;
@@ -99,7 +99,7 @@ class dashboard extends CI_Controller
 
             $insert = $this->acc->inser_trainer($data);
             if( $insert) {
-                echo "Lo datos del entrenador: ".$this->input->post('nombre')." fueron guardado con exito";
+                echo "Los datos del entrenador: ".$this->input->post('nombre')." fueron guardado con exito";
             }
             else{
                 echo 'Error al Agregar datos del entrenador '.$this->input->post("nombre").' ';
@@ -110,8 +110,8 @@ class dashboard extends CI_Controller
     }
 
 
-    public function Editar(){
-        $config['upload_path'] = 'uploads/';
+    public function Editar_trainer(){
+        $config['upload_path'] = 'uploads/trainer';
         $config['allowed_types'] = '*';
         $config['max_filename'] = '255';
         $config['encrypt_name'] = TRUE;
@@ -122,7 +122,7 @@ class dashboard extends CI_Controller
             if (0 < $_FILES['file']['error']) {
                 $data['valor'] = false;
             } else {
-                if (file_exists('uploads/' . $_FILES['file']['name'])) {
+                if (file_exists('uploads/trainer/' . $_FILES['file']['name'])) {
                     echo '<div class="succes">Imagen ya existe/'.$_FILES['file']['name'].'</div>';
                 } else {
                     $this->load->library('upload', $config);
@@ -182,6 +182,118 @@ class dashboard extends CI_Controller
 
             if( $insert) {
 
+                echo "Los datos del entrenador: ".$this->input->post('nombre')." fueron Editado con exito";
+            }
+            else{
+                echo 'Error al Editado datos del entrenador '.$this->input->post("nombre").' ';
+            }
+        }else{
+
+        }
+    }
+
+
+    public function Guardar_cliente(){
+        $config['upload_path'] = 'uploads/cliente';
+        $config['allowed_types'] = '*';
+        $config['max_filename'] = '255';
+        $config['encrypt_name'] = TRUE;
+        $config['max_size'] = '1024'; //1 MB
+
+        $data['valor'] = false;
+        if (isset($_FILES['file']['name'])) {
+            if (0 < $_FILES['file']['error']) {
+                $data['valor'] = false;
+            } else {
+                if (file_exists('uploads/cliente/' . $_FILES['file']['name'])) {
+                    echo '<div class="succes">Imagen ya existe/'.$_FILES['file']['name'].'</div>';
+                } else {
+                    $this->load->library('upload', $config);
+                    if ($this->upload->do_upload('file')) {
+                        // echo 'Imagen Guardado con existo : '.$this->upload->data('file_name');
+                        $data['valor'] = true;
+                    }
+                    else{
+                        echo 'Error: este error ocurrio por motivo de la subida de datos por favor comunicate con el administrador';
+                        $data['valor'] = false;
+                    }
+                }
+            }
+        } else {
+            $data['valor'] = false;
+        }
+        if($data['valor']){
+            $id = $this->acc->Buscar_id_account($_SESSION['email']);
+            $data = array(
+                "id_account" => $id,
+                "nombre" => $this->input->post('nombre'),
+                "telefono" => $this->input->post('telefono'),
+                "sexo" => $this->input->post('sexo'),
+                "ciudad" => $this->input->post('ciudad'),
+                "departamento" => $this->input->post('departamento'),
+                "direccion" => $this->input->post('direccion'),
+                "edad" => $this->input->post('edad'),
+                "img" => $this->upload->data('file_name')
+            );
+
+            $insert = $this->acc->inser_cliente($data);
+            if( $insert) {
+                echo "Los datos del usuario: ".$this->input->post('nombre')." fueron guardado con exito";
+            }
+            else{
+                echo 'Error al Agregar datos del datos '.$this->input->post("nombre").' ';
+            }
+        }else{
+
+        }
+    }
+
+    public function Editar_cliente(){
+        $config['upload_path'] = 'uploads/cliente';
+        $config['allowed_types'] = '*';
+        $config['max_filename'] = '255';
+        $config['encrypt_name'] = TRUE;
+        $config['max_size'] = '1024'; //1 MB
+
+        $data['valor'] = false;
+        if (isset($_FILES['file']['name'])) {
+            if (0 < $_FILES['file']['error']) {
+                $data['valor'] = false;
+            } else {
+                if (file_exists('uploads/cliente/' . $_FILES['file']['name'])) {
+                    echo '<div class="succes">Imagen ya existe/'.$_FILES['file']['name'].'</div>';
+                } else {
+                    $this->load->library('upload', $config);
+                    if ($this->upload->do_upload('file')) {
+                        // echo 'Imagen Guardado con existo : '.$this->upload->data('file_name');
+                        $data['valor'] = true;
+                    }
+                    else{
+                        echo 'Error: '.$this->upload->data('file_name');
+                        $data['valor'] = false;
+                    }
+                }
+            }
+        } else {
+            $data['valor'] = false;
+        }
+        if($data['valor']){
+            $id = $this->input->post('id_cliente');
+            $data = array(
+                "id_cliente" => $id,
+                "nombre" => $this->input->post('nombre'),
+                "telefono" => $this->input->post('telefono'),
+                "sexo" => $this->input->post('sexo'),
+                "ciudad" => $this->input->post('ciudad'),
+                "departamento" => $this->input->post('departamento'),
+                "direccion" => $this->input->post('direccion'),
+                "edad" => $this->input->post('edad'),
+                "img" => $this->upload->data('file_name')
+            );
+            $insert = $this->acc->Editar_cliente($id,$data);
+
+            if( $insert) {
+
                 echo "Lo datos del entrenador: ".$this->input->post('nombre')." fueron Editado con exito";
             }
             else{
@@ -193,13 +305,22 @@ class dashboard extends CI_Controller
     }
 
 
-    public function datos(){
+    public function datos_entrenador(){
             $id = $this->acc->Buscar_id_account($_SESSION['email']);
-            $datos = $this->acc->sacar_datos($id);
+            $datos = $this->acc->sacar_datos($id,"datos_entrenador","id_trainer");
             if(!empty($datos)){
                 echo json_encode($datos);
             }
     }
+
+    public function datos_cliente(){
+        $id = $this->acc->Buscar_id_account($_SESSION['email']);
+        $datos = $this->acc->sacar_datos($id,"datos_cliente","id_cliente");
+        if(!empty($datos)){
+            echo json_encode($datos);
+        }
+    }
+
 
     public function Mostrar_trainer(){
         if (empty($this->input->post("id"))) {

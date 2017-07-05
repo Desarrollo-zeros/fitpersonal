@@ -182,7 +182,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             return $id;
         }
 
-        public function sacar_datos($id){
+        public function sacar_datos($id,$tabla,$tipo){
             if($_SESSION['rango']>0){
                 $this->db->select("*");
                 $this->db->from("account");
@@ -192,8 +192,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
             else{
                 $this->db->select("*");
-                $this->db->from("datos_entrenador");
-                $this->db->where("id_trainer",$id);
+                $this->db->from($tabla);
+                $this->db->where($tipo,$id);
                 $query = $this->db->get();
                 return $query->result_array();
             }
@@ -210,6 +210,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
         }
 
+
+        public function inser_cliente($data = array()){
+            $insert = $this->db->insert("datos_cliente", $data);
+            if($insert){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+
+
         public function Editar_trainer($id,$data = array()){
             $this->db->select("*");
             $this->db->from("datos_entrenador");
@@ -222,13 +234,52 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 foreach ($query->result() as $row) {
 
                     if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-                        unlink("C:/xampp/htdocs/Fitpersonal/uploads/".$row->img);
+                        if(file_exists("C:/xampp/htdocs/Fitpersonal/uploads/trainer/".$row->img)){
+                            unlink("C:/xampp/htdocs/Fitpersonal/uploads/trainer/".$row->img);
+                        }
+
                     } else {
-                        unlink("/var/www/html/fitpersonal/uploads/".$row->img);
+                        if(file_exists("/var/www/html/fitpersonal/uploads/trainer/".$row->img)){
+                            unlink("/var/www/html/fitpersonal/uploads/trainer/".$row->img);
+                        }
+
                     }
                 }
                 $this->db->where('id_trainer', $id);
                 $insert = $this->db->update("datos_entrenador", $data);
+            }
+            if($insert){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+
+
+        public function Editar_cliente($id,$data = array()){
+            $this->db->select("*");
+            $this->db->from("datos_cliente");
+            $this->db->where('id_cliente', $id);
+            if ($this->db->count_all_results() > 0) {
+                $this->db->select('*');
+                $this->db->from('datos_cliente');
+                $this->db->where('id_cliente', $id);
+                $query = $this->db->get();
+                foreach ($query->result() as $row) {
+                    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+                        if(file_exists("C:/xampp/htdocs/Fitpersonal/uploads/cliente/".$row->img)){
+                            unlink("C:/xampp/htdocs/Fitpersonal/uploads/cliente/".$row->img);
+                        }
+
+                    } else {
+                        if(file_exists("/var/www/html/fitpersonal/uploads/cliente/".$row->img)){
+                            unlink("/var/www/html/fitpersonal/uploads/cliente/".$row->img);
+                        }
+                    }
+                }
+                $this->db->where('id_cliente', $id);
+                $insert = $this->db->update("datos_cliente", $data);
             }
             if($insert){
                 return true;

@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li class="active">
-                    <a href="#entrenadores">
+                    <a href="#datos">
                         <i class="material-icons">person</i>
                         <p>Datos personales</p>
                     </a>
@@ -96,12 +96,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Entrenadores</a>
+                    <a class="navbar-brand" href="#">Usuario</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="material-icons">dashboard</i>
                                 <p class="hidden-lg hidden-md">Dashboard</p>
                             </a>
@@ -119,22 +119,141 @@
                         <li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="material-icons">person</i>
+                                <i class="material-icons">person</i>Usuario
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="<?=base_url('');?>">Inicio</a></li>
                                 <li><a href="<?=base_url('dashboard/logout');?>">Cerrar Seccion</a></li>
                             </ul>
                         </li>
-                        <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                            <p class="hidden-lg hidden-md">Profile</p>
-                        </a>
                         </li>
                     </ul>
 
                 </div>
             </div>
         </nav>
+
+
+
+
+
+        <div class="content" id="datos">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="text-center card-header" data-background-color="fp">
+                                <h4 class="title">Datos Personal del Entrenador</h4>
+                                <p class="category">Complete Su perfil para ser seleccionado</p>
+                            </div>
+                            <div class="card-content">
+                                <form id="form" class="jsform" method="post">
+                                    <input name="usuario_date" id="usuario_date"  type="hidden" value="Usuario">
+                                    <input name="id_cliente" id="id_cliente"  type="hidden" value="">
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                            <label class="text-center"> <img class="center-block" src="<?=base_url("/img/FITPERSONAL.png");?>" style="width: 200px;" alt="Logo Sportlife" title="Logo Sportlife"></label>
+                                            <input type="text" class="form-control" disabled value="FitPersonal Tu entrenador en casa">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group center-block text-center">
+                                            <div class="col-sm-12 center-block text-center">
+                                                <div class="fileinput fileinput-new center-block" data-provides="fileinput">
+                                                    <label class="control-label text-center"><i class="col-sm-12 material-icons prefix">add_a_photo</i> Imagen</label>
+                                                    <input type="file" class="col-sm-9form-control" name="file" id="file" required>
+                                                    <br>
+                                                    <br>
+                                                    <img class="img-responsive center-block" id="imgSalida" style="width: 150px; height: 150px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="row text-center">
+                                            <div class="col-md-12">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label col-md-12" style="font-style: italic; font-size: 18px !important;">DATOS PERSONALES</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"><i class="material-icons prefix">account_circle</i> Nombre Completo</label>
+                                                <br>
+                                                <br>
+                                                <input id="nombre" placeholder="nombre completo"c name="nombre" type="text" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"><i class="material-icons prefix">insert_invitation</i>Edad</label>
+                                                <br>
+                                                <br>
+                                                <input type="number" placeholder="19" id="edad" name="edad" class="form-control" required >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"><i class="material-icons prefix">phone</i>Telefono</label>
+                                                <br>
+                                                <br>
+                                                <input type="number" placeholder="3043651232" id="telefono" name="telefono" class="form-control" required >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"><i class="material-icons prefix">info</i>Sexo</label>
+                                                <br>
+                                                <br>
+                                                <input type="text" placeholder="mujer" id="sexo" name="sexo" class="form-control" required >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"><i class="material-icons prefix">location_city</i>Ciudad</label>
+                                                <br>
+                                                <br>
+                                                <input type="text"  id="ciudad" name="ciudad" class="form-control" required >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"><i class="material-icons prefix">location_city</i>Departamento</label>
+                                                <br>
+                                                <br>
+                                                <input type="text"  id="departamento" name="departamento" class="form-control" required >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"><i class="material-icons prefix">directions_walk</i>Direccion</label>
+                                                <br>
+                                                <br>
+                                                <input type="text" id="direccion" name="direccion" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="submit"  id="GE" class="btn btn-primary pull-right" value="Guardar Datos">
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
 
         <div class="content" id="fondo">

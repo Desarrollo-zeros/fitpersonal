@@ -37,19 +37,38 @@ jQuery.each(jQuery('textarea[data-autoresize]'), function() {
 
 
 $(document).ready(function(){
+    var url = "";
+    var tipo = "";
+
+
 
     $('#imgSalida').attr('src', '').empty();
     $('form.jsform').on('submit', function(form){
         form.preventDefault();
-        if($("#id_trainer").val().length>0){
-            var url = "dashboard/Editar";
+        console.log(url)
+
+
+        if($("#usuario_date").val()=== "Entrenador"){
+            if($("#id_trainer").val().length>0){
+                var url = "dashboard/Editar_trainer";
+                var titulo = "Editar";
+            }
+            else{
+                var url = "dashboard/Guardar_trainer";
+                var titulo = "Guardar";
+            }
+        }
+        else if($("#usuario_date").val() === "Usuario"){
+            var url = "dashboard/Editar_cliente";
             var titulo = "Editar";
         }
         else{
-            var url = "dashboard/Guardar";
+            var url = "dashboard/Guardar_cliente";
             var titulo = "Guardar";
-            var status = "1";
         }
+
+
+
         var formData = new FormData($(this)[0]);
         swal({
             title: titulo,
@@ -88,14 +107,28 @@ $(document).ready(function(){
 
 
 $(document).ready(function(){
-var n = 0;
+
+    console.log($("#usuario_date").val())
+    var url = "";
+    var tipo = "";
+    if($("#usuario_date").val()=="Entrenador"){
+        url =  "dashboard/datos_entrenador";
+        tipo = "Entrenador";
+    }
+    if($("#usuario_date").val()== "Usuario"){
+        url =  "dashboard/datos_cliente";
+        tipo = "Cliente";
+    }
+
+    var n = 0;
     $.ajax({
         type: "POST",
         dataType: "JSON",
-        url: "dashboard/datos",
+        url: url,
         success: function(data) {
             for (var i in data) {
-                if(data[i].rango > 0 ) {
+
+                if(data[i].rango > 0) {
                     if (data[i].rango.length > 0) {
                         $("#Es_name").append("<span style='color: #008fb3;'>" + data[i].account + "</span>");
                         $("#Es_soy").append("<span style='color: #008fb3;'>" + data[i].email + "</span>");
@@ -118,11 +151,11 @@ var n = 0;
                         }
                     }
                 }
-                else{
+                 if(tipo == "Entrenador"){
                     window.setInterval("datos()", 1000);
-                    $('#imagen').attr("src", 'uploads/' + data[i].img);
-                    $('#imgSalida').attr("src", 'uploads/' + data[i].img);
-                    $("#file").attr("src", 'uploads/' + data[i].img);
+                    $('#imagen').attr("src", 'uploads/trainer/' + data[i].img);
+                    $('#imgSalida').attr("src", 'uploads/trainer/' + data[i].img);
+                    $("#file").attr("src", 'uploads/trainer/' + data[i].img);
                     $("#nombre").val(data[i].nombre);
                     $("#Es_name").append("<span style='color: #008fb3;'>"+data[i].nombre+"</span>");
                     $("#Es_soy").append("<span style='color: #008fb3;'>"+data[i].info+"</span>");
@@ -168,6 +201,27 @@ var n = 0;
                     }
 
                 }
+                 if(tipo == "Cliente"){
+                    $('#imagen').attr("src", 'uploads/cliente/' + data[i].img);
+                    $('#imgSalida').attr("src", 'uploads/cliente/' + data[i].img);
+                    $("#file").attr("src", 'uploads/cliente/' + data[i].img);
+                    $("#nombre").val(data[i].nombre);
+                    $("#telefono").val(data[i].telefono);
+                    $("#ciudad").val(data[i].ciudad);
+                    $("#sexo").val(data[i].sexo);
+                    $("#departamento").val(data[i].departamento);
+                    $("#direccion").val(data[i].direccion);
+                    $("#edad").val(data[i].edad);
+
+                    $("#id_cliente").val(data[i].id_cliente);
+                    if ($("#id_cliente").val().length > 0) {
+                        $("#GE").val("Editar Datos");
+                    }
+                    else {
+                        $("#GE").val("Guardar Datos");
+                    }
+
+                }
 
             }
         }
@@ -175,11 +229,18 @@ var n = 0;
 });
 
 function datos() {
-    var n = 0;
+    var url = "";
+    if($("#usuario_date").val()=="Entrenador"){
+        url =  "dashboard/datos_entrenador";
+    }
+    else{
+        url =  "dashboard/datos_cliente";
+    }
+
     $.ajax({
             type: "POST",
             dataType: "JSON",
-            url: "dashboard/datos",
+            url: url,
             success: function(data) {
                 for (var i in data) {
                     if (data[i].status == 1) {
@@ -285,7 +346,7 @@ $(document).ready(function () {
                     trainer = '<div class="col-md-4"> ' +
                         '<div class="card hovercard"> ' +
                         '<div class="cardheader"> </div> ' +
-                        '<div class="avatar"> <img alt="" src="uploads/' + data[i].img + '"> </div> ' +
+                        '<div class="avatar"> <img alt="" src="uploads/trainer/' + data[i].img + '"> </div> ' +
                         '<div class="info"> <div class="title"> ' +
                         '<a target="_blank" href="" style="color: rgba(106,106,106,0.8);">' + data[i].nombre + '</a></div> ' +
                         '<div class="desc" style="color: rgba(106,106,106,0.8);">Celular: ' + data[i].telefono + '</div> ' +
@@ -400,5 +461,7 @@ function negar(id) {
     })
 
 }
+
+
 
 
