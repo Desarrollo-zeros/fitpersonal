@@ -17,14 +17,14 @@
     <meta property="og:image:width" content="460" />
     <meta property="og:image:height" content="260" />
 
-    <title>Fitness</title>
+    <title>Fitpersonal</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <!--Favicon -->
     <link rel="stylesheet" href="<?=base_url("css/perfil.css");?>">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="httpss://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="httpss://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="apple-touch-icon" sizes="57x57" href="<?=base_url("img/apple-touch-icon.png");?>">
     <link rel="apple-touch-icon" sizes="60x60" href="<?=base_url("img/apple-touch-icon.png");?>">
     <link rel="apple-touch-icon" sizes="72x72" href="<?=base_url("img/apple-touch-icon.png");?>">

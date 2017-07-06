@@ -1,20 +1,35 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
 <head>
-    <meta charset="utf-8" />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta property="og:locale" content="es_ES" >
+    <meta property="og:type" content="website" >
+    <meta property="og:title" content="Fitpersonal" >
+    <meta property="og:description" content="Fitpersonal entrenador en casa " >
+    <meta property="og:url" content="http://FitPersonal.ml" >
+    <meta property="og:site_name" content="FitPersonal" >
+    <meta property="og:image" content="https://www.facebook.com/wowzeros/" >
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="460" />
+    <meta property="og:image:height" content="260" />
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="apple-touch-icon" sizes="76x76"href="<?=base_url("assets/img/apple-icon.png");?>"/>
     <link rel="icon" type="image/png"href="<?=base_url("assets/img/favicon.png");?>" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <link href="<?=base_url("assets/css/bootstrap.min.css");?>" rel="stylesheet" />
     <link href="<?=base_url("assets/css/material-dashboard.css");?>" rel="stylesheet"/>
     <link href="<?=base_url("assets/css/demo.css");?>" rel="stylesheet" />
     <link href="<?=base_url("css/user.css");?>" rel="stylesheet" />
+    <link rel="stylesheet" href="<?=base_url("css/todo.css");?>">
     <script src="<?=base_url("js/user.js");?>"></script>
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
     <link rel="apple-touch-icon" sizes="57x57" href="<?=base_url("img/apple-icon-57x57.png");?>">
     <link rel="apple-touch-icon" sizes="60x60" href="<?=base_url("img/apple-icon-60x60.png");?>">
     <link rel="apple-touch-icon" sizes="72x72" href="<?=base_url("img/apple-icon-72x72.png");?>">
