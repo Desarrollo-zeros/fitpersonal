@@ -10,7 +10,7 @@
     <meta property="og:type" content="website" >
     <meta property="og:title" content="Fitpersonal" >
     <meta property="og:description" content="Fitpersonal entrenador en casa " >
-    <meta property="og:url" content="http://FitPersonal.ml" >
+    <meta property="og:url" content="https://FitPersonal.ml" >
     <meta property="og:site_name" content="FitPersonal" >
     <meta property="og:image" content="https://www.facebook.com/wowzeros/" >
     <meta property="og:image:type" content="image/png" />
@@ -22,9 +22,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <!--Favicon -->
     <link rel="stylesheet" href="<?=base_url("css/perfil.css");?>">
-    <script src="httpss://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="httpss://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="apple-touch-icon" sizes="57x57" href="<?=base_url("img/apple-touch-icon.png");?>">
     <link rel="apple-touch-icon" sizes="60x60" href="<?=base_url("img/apple-touch-icon.png");?>">
     <link rel="apple-touch-icon" sizes="72x72" href="<?=base_url("img/apple-touch-icon.png");?>">

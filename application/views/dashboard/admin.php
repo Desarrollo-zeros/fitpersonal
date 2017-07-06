@@ -8,7 +8,7 @@
     <meta property="og:type" content="website" >
     <meta property="og:title" content="Fitpersonal" >
     <meta property="og:description" content="Fitpersonal entrenador en casa " >
-    <meta property="og:url" content="http://FitPersonal.ml" >
+    <meta property="og:url" content="https://FitPersonal.ml" >
     <meta property="og:site_name" content="FitPersonal" >
     <meta property="og:image" content="https://www.facebook.com/wowzeros/" >
     <meta property="og:image:type" content="image/png" />
@@ -273,7 +273,7 @@
                     </ul>
                 </nav>
                 <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.Fitpersonal.co">Dev Zeros</a>, Carlos andres castilla garcia
+                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="https://www.Fitpersonal.ml">Dev Zeros</a>, Carlos andres castilla garcia
                 </p>
             </div>
         </footer>
