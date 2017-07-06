@@ -1,7 +1,8 @@
 .control-label{
-    font-size: 15px !important;
+    font-size: 20px !important;
     color: black !important;
 }
+
 
 textarea {
     box-sizing: border-box;

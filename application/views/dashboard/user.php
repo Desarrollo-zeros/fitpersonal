@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="apple-touch-icon" sizes="76x76"href="<?=base_url("assets/img/apple-icon.png");?>"/>
     <link rel="icon" type="image/png"href="<?=base_url("assets/img/favicon.png");?>" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <link href="<?=base_url("assets/css/bootstrap.min.css");?>" rel="stylesheet" />
     <link href="<?=base_url("assets/css/material-dashboard.css");?>" rel="stylesheet"/>
     <link href="<?=base_url("assets/css/demo.css");?>" rel="stylesheet" />
     <link href="<?=base_url("css/user.css");?>" rel="stylesheet" />
-    <script src="<?=base_url("js/user.js");?>"></script>
     <link rel="stylesheet" href="<?=base_url("css/todo.css");?>">
+    <script src="<?=base_url("js/user.js");?>"></script>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
     <link rel="apple-touch-icon" sizes="57x57" href="<?=base_url("img/apple-icon-57x57.png");?>">
@@ -64,7 +64,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a id="cliente" href="#clientes">
+                    <a id="cliente" href="#contratar_entrenador">
                         <i class="material-icons">supervisor_account</i>
                         <p>Entrenadores</p>
                     </a>
@@ -243,7 +243,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="submit"  id="GE" class="btn btn-primary pull-right" value="Guardar Datos">
+                                    <input type="submit"  id="GE" class="btn btn-primary pull-right"  value="Guardar Datos">
                                     <div class="clearfix"></div>
                                 </form>
                             </div>
@@ -256,16 +256,38 @@
 
 
 
-        <div class="content" id="fondo">
+        <div class="content" id="contratar_entrenador">
             <div class="container-fluid">
                 <div class="row">
                     <div class="text-center">
                         <div class="card">
                             <div class="card-header" data-background-color="fp">
-                                <h4 class="title">Usuario Datos personales</h4>
-                                <p class="category">Pagina en construcción</p>
+                                <h4 class="title">Solicitar Entrenador personal</h4>
+                                <p class="category">llenando el formulario se te dara acceso a varios entrenadores</p>
                             </div>
                             <div class="card-content">
+
+                                <form method="post" action="https://gateway.payulatam.com/ppp-web-gateway/pb.zul" accept-charset="UTF-8">
+                                      <input type="image" border="0" alt="" src="http://www.payulatam.com/img-secure-2015/boton_pagar_mediano.png" onClick="this.form.urlOrigen.value = window.location.href;"/>
+                                      <input name="buttonId" type="hidden" value="KTni90CbMpBMeKtwbB/2H7o1rAgHdbJXNSuBF1q71GfYuoZd/ndGKg=="/>
+                                      <input name="merchantId" type="hidden" value="660776"/>
+                                      <input name="accountId" type="hidden" value="663342"/>
+                                      <input name="description" type="hidden" value="Plan 1 H"/>
+                                      <input name="referenceCode" type="hidden" value="00001"/>
+                                      <input name="amount" type="hidden" value="12000"/>
+                                      <input name="tax" type="hidden" value="0"/>
+                                      <input name="taxReturnBase" type="hidden" value="0"/>
+                                      <input name="shipmentValue" value="0" type="hidden"/>
+                                      <input name="currency" type="hidden" value="COP"/>
+                                      <input name="lng" type="hidden" value="es"/>
+                                      <input name="approvedResponseUrl" type="hidden" value="http://fitpersonal.ml/fitpersonal/dashboard/pago_e"/>
+                                      <input name="declinedResponseUrl" type="hidden" value="http://fitpersonal.ml/fitpersonal/dashboard/pago_c"/>
+                                      <input name="pendingResponseUrl" type="hidden" value="http://fitpersonal.ml/fitpersonal/dashboard/pago_p"/>
+                                      <input name="displayShippingInformation" type="hidden" value="YES"/>
+                                      <input name="sourceUrl" id="urlOrigen" value="" type="hidden"/>
+                                      <input name="buttonType" value="SIMPLE" type="hidden"/>
+                                      <input name="signature" value="9c89b7a0084c0fd85fd76116072677fc65b6f587ae9cf518905fd525c455c8f7" type="hidden"/>
+                                </form>
 
                             </div>
                         </div>
@@ -325,5 +347,20 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
 <script src="<?=base_url("assets/js/material-dashboard.js");?>"></script>
 <script src="<?=base_url("assets/js/demo.js");?>"></script>
-
 </html>
+
+<!-- Chatra {literal} -->
+<script>
+    (function(d, w, c) {
+        w.ChatraID = 'wHs2WSifA3cziTQ54';
+        var s = d.createElement('script');
+        w[c] = w[c] || function() {
+                (w[c].q = w[c].q || []).push(arguments);
+            };
+        s.async = true;
+        s.src = (d.location.protocol === 'https:' ? 'https:': 'http:')
+            + '//call.chatra.io/chatra.js';
+        if (d.head) d.head.appendChild(s);
+    })(document, window, 'Chatra');
+</script>
+<!-- /Chatra {/literal} -->
