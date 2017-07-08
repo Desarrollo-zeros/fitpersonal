@@ -343,7 +343,7 @@ function estado_confirmacion() {
             url: "dashboard/estado_confirmacion",
             success: function(data) {
                 for (var i in data) {
-                    if(data[i].status == 0){
+                    if(data[i].status == 0 ||  data[i].status == null){
                         $("#status1").css("display", "none");
                         $("#status2").css("display", "none");
                         $("#form_fondo").css("display", "block");
