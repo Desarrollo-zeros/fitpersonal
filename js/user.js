@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $("#sexo").html('<option value="Hombre">Hombre</option><option value="Mujer">Mujer</option>');
 
-    window.setInterval("estado_confirmacion()", 10);
+    window.setInterval("estado_confirmacion()", 2000);
 })
 
 
