@@ -1,3 +1,9 @@
+$(document).ready(function () {
+    $("#sexo").html('<option value="Hombre">Hombre</option><option value="Mujer">Mujer</option>');
+
+    window.setInterval("estado_confirmacion()", 10);
+})
+
 
 $(document).ready(function(){
 $(function() {
@@ -39,15 +45,9 @@ jQuery.each(jQuery('textarea[data-autoresize]'), function() {
 $(document).ready(function(){
     var url = "";
     var tipo = "";
-
-
-
     $('#imgSalida').attr('src', '').empty();
     $('form.jsform').on('submit', function(form){
         form.preventDefault();
-        console.log(url)
-
-
         if($("#usuario_date").val()=== "Entrenador"){
             if($("#id_trainer").val().length>0){
                 var url = "dashboard/Editar_trainer";
@@ -58,16 +58,15 @@ $(document).ready(function(){
                 var titulo = "Guardar";
             }
         }
-        else if($("#usuario_date").val() === "Usuario"){
-            var url = "dashboard/Editar_cliente";
-            var titulo = "Editar";
+        else if($("#usuario_date").val() === "Usuario") {
+            if ($("#id_cliente").val().length > 0) {
+                var url = "dashboard/Editar_cliente";
+                var titulo = "Editar";
+            } else {
+                var url = "dashboard/Guardar_cliente";
+                var titulo = "Guardar";
+            }
         }
-        else{
-            var url = "dashboard/Guardar_cliente";
-            var titulo = "Guardar";
-        }
-
-
 
         var formData = new FormData($(this)[0]);
         swal({
@@ -91,6 +90,49 @@ $(document).ready(function(){
                 success: function (data) {
                     if(data != ""){
                         swal("Mensaje",data,"success");
+                    }else{
+                        swal("Mensaje",data,"success");
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    swal("Mensaje","error","success");
+                }
+            });
+        });
+
+    });
+});
+
+
+
+$(document).ready(function(){
+
+    $('form.jsform_fondo').on('submit', function(form){
+        form.preventDefault();
+        var formData = new FormData($(this)[0]);
+        swal({
+            title: "Cuidado",
+            text: "Si aceptas guardar los datos no podra editarlos luego",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#08dd79',
+            cancelButtonColor: '#dd3c00',
+            confirmButtonText: 'Guardar',
+            cancelButtonText: "Cancelar"
+        }).then(function () {
+            $.ajax({
+                url: "dashboard/inser_confirmacion_de_pago",
+                type: 'POST',
+                data: formData,
+                async: false,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if(data != ""){
+                        swal("Mensaje",data,"success");
+
                     }else{
                         swal("Mensaje",data,"success");
                     }
@@ -153,9 +195,16 @@ $(document).ready(function(){
                 }
                  if(tipo == "Entrenador"){
                     window.setInterval("datos()", 1000);
-                    $('#imagen').attr("src", 'uploads/trainer/' + data[i].img);
-                    $('#imgSalida').attr("src", 'uploads/trainer/' + data[i].img);
-                    $("#file").attr("src", 'uploads/trainer/' + data[i].img);
+                    if(data[i].img === "No"){
+                        $('#imagen').attr("src", 'images/No.jpg');
+                        $('#imgSalida').attr("src",  'images/No.jpg');
+                        $("#file").attr("src",  'images/No.jpg');
+                    }
+                    else{
+                        $('#imagen').attr("src", 'uploads/trainer/' + data[i].img);
+                        $('#imgSalida').attr("src", 'uploads/trainer/' + data[i].img);
+                        $("#file").attr("src", 'uploads/trainer/' + data[i].img);
+                    }
                     $("#nombre").val(data[i].nombre);
                     $("#Es_name").append("<span style='color: #008fb3;'>"+data[i].nombre+"</span>");
                     $("#Es_soy").append("<span style='color: #008fb3;'>"+data[i].info+"</span>");
@@ -163,8 +212,6 @@ $(document).ready(function(){
                     $("#estado_civil").val(data[i].estado_civil);
                     $("#telefono").val(data[i].telefono);
                     $("#email").val(data[i].email);
-                    $("#ciudad").val(data[i].ciudad);
-                    $("#departamento").val(data[i].departamento);
                     $("#direccion").val(data[i].direccion);
                     $("#fecha_nacimiento").val(data[i].fecha_nacimiento);
                     $("#estudio").val(data[i].estudio);
@@ -191,7 +238,8 @@ $(document).ready(function(){
                     $("#cargo6").val(data[i].cargo6);
                     $("#tel6").val(data[i].tel6);
                     $("#info").val(data[i].info);
-
+                     $("#ciu").append(data[i].ciudad);
+                     $("#dep").append(data[i].departamento);
                     $("#id_trainer").val(data[i].id_trainer);
                     if ($("#id_trainer").val().length > 0) {
                         $("#GE").val("Editar Datos");
@@ -202,16 +250,26 @@ $(document).ready(function(){
 
                 }
                  if(tipo == "Cliente"){
-                    $('#imagen').attr("src", 'uploads/cliente/' + data[i].img);
-                    $('#imgSalida').attr("src", 'uploads/cliente/' + data[i].img);
-                    $("#file").attr("src", 'uploads/cliente/' + data[i].img);
+
+                     if(data[i].img === "No"){
+                         $('#imagen').attr("src", 'images/No.jpg');
+                         $('#imgSalida').attr("src",  'images/No.jpg');
+                         $("#file").attr("src",  'images/No.jpg');
+                     }
+                     else{
+                         $('#imagen').attr("src", 'uploads/cliente/' + data[i].img);
+                         $('#imgSalida').attr("src", 'uploads/cliente/' + data[i].img);
+                         $("#file").attr("src", 'uploads/cliente/' + data[i].img);
+                     }
+
                     $("#nombre").val(data[i].nombre);
                     $("#telefono").val(data[i].telefono);
-                    $("#ciudad").val(data[i].ciudad);
                     $("#sexo").val(data[i].sexo);
-                    $("#departamento").val(data[i].departamento);
                     $("#direccion").val(data[i].direccion);
                     $("#edad").val(data[i].edad);
+                    $("#id_departamento").append('<option class="active" value='+data[i].departamento+'>'+data[i].departamento+'</option>');
+                    $("#id_ciudad").append('<option class="active" value='+data[i].ciudad+'>'+data[i].ciudad+'</option>');
+                    $("#sexo").append('<option class="active" value='+data[i].sexo+'>'+data[i].sexo+'</option>');
 
                     $("#id_cliente").val(data[i].id_cliente);
                     if ($("#id_cliente").val().length > 0) {
@@ -276,6 +334,36 @@ function datos() {
         }
     );
 }
+
+
+function estado_confirmacion() {
+    $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: "dashboard/estado_confirmacion",
+            success: function(data) {
+                for (var i in data) {
+                    if(data[i].status == 0){
+                        $("#status1").css("display", "none");
+                        $("#status2").css("display", "none");
+                        $("#form_fondo").css("display", "block");
+                    }
+                    if(data[i].status == 1){
+                        $("#form_fondo").css("display", "none");
+                        $("#status2").css("display", "none");
+                        $("#status1").css("display", "block");
+                    }
+                    if(data[i].status == 2){
+                        $("#form_fondo").css("display", "none");
+                        $("#status1").css("display", "none");
+                        $("#status2").css("display", "block");
+                    }
+                }
+            }
+        }
+    );
+}
+
 
 
 $(document).ready(function () {
@@ -462,6 +550,53 @@ function negar(id) {
 
 }
 
+
+$(document).ready(function () {
+    var form = "";
+    $.ajax({
+        type: "POST",
+        dataType: "JSON",
+        url: "f/planes",
+        success: function(data) {
+            for (var i in data) {
+                if(data[i].grupo == 1){
+                    plan1 = '<p class="feature-text "> ' + data[i].tiempo + ' <i class="fa fa-money" aria-hidden="true"></i> $ '+format(data[i].valor)+' COP </p><hr>';
+                    $("#plan1").append(plan1);
+                }
+                if(data[i].grupo == 2){
+                    plan2 = '<p class="feature-text "> ' + data[i].tiempo + ' <i class="fa fa-money" aria-hidden="true"></i> $ '+format(data[i].valor)+' COP</p><hr>';
+                    $("#plan2").append(plan2);
+                }
+                if(data[i].grupo == 3){
+                    plan3 = '<p class="feature-text "> ' + data[i].tiempo + ' <i class="fa fa-money" aria-hidden="true"></i> $ '+format(data[i].valor)+' COP</p><hr>';
+                    $("#plan3").append(plan3);
+                }
+            }
+        }
+    });
+});
+
+function format(input)
+{
+    return input.replace(/\D/g, "")
+        .replace(/([0-9])([0-9]{3})$/, '$1.$2')
+        .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
+}
+
+$(document).ready(function() {
+    $.get('dashboard/departamento',function(dato,status){
+        $('#id_departamento').append(dato);
+    });
+    $("#id_departamento").on({
+        change: function() {
+            $.post('dashboard/ciudad',{
+                idc:$('#id_departamento').val()
+            },function(dato, status){
+                $('#id_ciudad').html(dato);
+            });
+        }
+    });
+});
 
 
 

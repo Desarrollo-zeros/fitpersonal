@@ -271,10 +271,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         if(file_exists("C:/xampp/htdocs/Fitpersonal/uploads/cliente/".$row->img)){
                             unlink("C:/xampp/htdocs/Fitpersonal/uploads/cliente/".$row->img);
                         }
+                        else{
+
+                        }
 
                     } else {
                         if(file_exists("/var/www/html/fitpersonal/uploads/cliente/".$row->img)){
                             unlink("/var/www/html/fitpersonal/uploads/cliente/".$row->img);
+                        }
+                        else{
+
                         }
                     }
                 }
@@ -299,6 +305,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function planes(){
             $this->db->select("*");
             $this->db->from("planes");
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+
+        public function plan($id){
+            $this->db->select("*");
+            $this->db->from("planes");
+            $this->db->where("id",$id);
             $query = $this->db->get();
             return $query->result_array();
         }
@@ -351,6 +365,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $data = array("status " => "0", "fecha_borrado" => date("F j, Y, g:i a"), "borrar" => 1);
                 return  $this->db->update("datos_entrenador", $data);
             }
+        }
+
+
+        public function departamento(){
+            $this->db->select("*");
+            $this->db->from("departamento");
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+
+
+        public function ciudad($id){
+            $id_d = "";
+            $this->db->select("*");
+            $this->db->from("departamento");
+            $this->db->where("departamento",$id);
+            $query = $this->db->get();
+            foreach ($query->result() as $row) {
+                $id_d = $row->id;
+            }
+            $this->db->select("*");
+            $this->db->from("municipio");
+            $this->db->where("id_departamento",$id_d);
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+
+
+        public function inser_confirmacion_de_pago($data = array()){
+            $insert = $this->db->insert("confirmacion_pago", $data);
+            if($insert){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        public function estados_confirmacion($id){
+            $this->db->select("*");
+            $this->db->from("confirmacion_pago");
+            $this->db->where("id_cliente",$id);
+            $query = $this->db->get();
+            return $query->result_array();
         }
 
     }

@@ -66,7 +66,7 @@
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li>
-                    <a href="#">
+                    <a href="<?=base_url("");?>">
                         <i class="material-icons">FP</i>
                         <p>Fipersonal</p>
                     </a>
@@ -247,33 +247,33 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label"><i class="material-icons prefix">location_city</i>Ciudad</label>
-                                                <br>
-                                                <br>
-                                                <input type="text"  id="ciudad" name="ciudad" class="form-control" required >
-                                            </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating" >
+                                            <label class="control-label"><i class="material-icons prefix">location_city</i>Departamento <div id="dep" style="font-size: 10px;"></div></label>
+                                            <br>
+                                            <br>
+                                            <select class="form-control" name="departamento" id="id_departamento" required></select>
                                         </div>
+                                    </div>
 
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label"><i class="material-icons prefix">location_city</i>Departamento</label>
-                                                <br>
-                                                <br>
-                                                <input type="text"  id="departamento" name="departamento" class="form-control" required >
-                                            </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label"><i class="material-icons prefix">location_city</i>Ciudad <div id="ciu" style="font-size: 10px;"></div></label>
+                                            <br>
+                                            <br>
+                                            <select class="form-control" name="ciudad" id="id_ciudad" required></select>
                                         </div>
+                                    </div>
 
-                                        <div class="col-md-4">
+                                    <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label"><i class="material-icons prefix">directions_walk</i>Direccion</label>
                                                 <br>
                                                 <br>
                                                 <input type="text" id="direccion" name="direccion" class="form-control" required>
                                             </div>
-                                        </div>
+                                    </div>
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label"><i class="material-icons prefix">insert_invitation</i>Fecha nacimiento</label>

@@ -1,13 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class dashboard extends CI_Controller
 {
+
 
 
     public function __construct()
     {
         parent::__construct();
+        $this->load->library('paypal_lib');
         $this->load->model('General_model', "General");
         $this->load->model('account', "acc");
     }
@@ -199,11 +200,12 @@ class dashboard extends CI_Controller
         $config['max_filename'] = '255';
         $config['encrypt_name'] = TRUE;
         $config['max_size'] = '1024'; //1 MB
+        $img = "";
 
         $data['valor'] = false;
         if (isset($_FILES['file']['name'])) {
             if (0 < $_FILES['file']['error']) {
-                $data['valor'] = false;
+                $img = "No";
             } else {
                 if (file_exists('uploads/cliente/' . $_FILES['file']['name'])) {
                     echo '<div class="succes">Imagen ya existe/'.$_FILES['file']['name'].'</div>';
@@ -212,6 +214,7 @@ class dashboard extends CI_Controller
                     if ($this->upload->do_upload('file')) {
                         // echo 'Imagen Guardado con existo : '.$this->upload->data('file_name');
                         $data['valor'] = true;
+                        $img = $this->upload->data('file_name');
                     }
                     else{
                         echo 'Error: este error ocurrio por motivo de la subida de datos por favor comunicate con el administrador';
@@ -225,15 +228,15 @@ class dashboard extends CI_Controller
         if($data['valor']){
             $id = $this->acc->Buscar_id_account($_SESSION['email']);
             $data = array(
-                "id_account" => $id,
+                "id_cliente" => $id,
                 "nombre" => $this->input->post('nombre'),
                 "telefono" => $this->input->post('telefono'),
                 "sexo" => $this->input->post('sexo'),
-                "ciudad" => $this->input->post('ciudad'),
-                "departamento" => $this->input->post('departamento'),
-                "direccion" => $this->input->post('direccion'),
+                "ciudad" => strtoupper($this->input->post('ciudad')),
+                "departamento" => strtoupper($this->input->post('departamento')),
                 "edad" => $this->input->post('edad'),
-                "img" => $this->upload->data('file_name')
+                "direccion" => $this->input->post('direccion'),
+                "img" => $img
             );
 
             $insert = $this->acc->inser_cliente($data);
@@ -244,7 +247,26 @@ class dashboard extends CI_Controller
                 echo 'Error al Agregar datos del datos '.$this->input->post("nombre").' ';
             }
         }else{
+            $id = $this->acc->Buscar_id_account($_SESSION['email']);
+            $data = array(
+                "id_cliente" => $id,
+                "nombre" => $this->input->post('nombre'),
+                "telefono" => $this->input->post('telefono'),
+                "sexo" => $this->input->post('sexo'),
+                "ciudad" => strtoupper($this->input->post('ciudad')),
+                "departamento" => strtoupper($this->input->post('departamento')),
+                "edad" => $this->input->post('edad'),
+                "direccion" => $this->input->post('direccion'),
+                "img" => $img
+            );
 
+            $insert = $this->acc->inser_cliente($data);
+            if( $insert) {
+                echo "Los datos del usuario: ".$this->input->post('nombre')." fueron guardado con exito";
+            }
+            else{
+                echo 'Error al Agregar datos del datos '.$this->input->post("nombre").' ';
+            }
         }
     }
 
@@ -254,11 +276,12 @@ class dashboard extends CI_Controller
         $config['max_filename'] = '255';
         $config['encrypt_name'] = TRUE;
         $config['max_size'] = '1024'; //1 MB
-
+        $img = "";
         $data['valor'] = false;
         if (isset($_FILES['file']['name'])) {
             if (0 < $_FILES['file']['error']) {
                 $data['valor'] = false;
+                $img = "No";
             } else {
                 if (file_exists('uploads/cliente/' . $_FILES['file']['name'])) {
                     echo '<div class="succes">Imagen ya existe/'.$_FILES['file']['name'].'</div>';
@@ -267,6 +290,7 @@ class dashboard extends CI_Controller
                     if ($this->upload->do_upload('file')) {
                         // echo 'Imagen Guardado con existo : '.$this->upload->data('file_name');
                         $data['valor'] = true;
+                        $img = $this->upload->data('file_name');
                     }
                     else{
                         echo 'Error: '.$this->upload->data('file_name');
@@ -278,29 +302,47 @@ class dashboard extends CI_Controller
             $data['valor'] = false;
         }
         if($data['valor']){
-            $id = $this->input->post('id_cliente');
+            $id = $this->acc->Buscar_id_account($_SESSION['email']);
+            $data = array(
+                "id_cliente" => $id,
+                "nombre" => $this->input->post('nombre'),
+                "telefono" => $this->input->post('telefono'),
+                "sexo" => $this->input->post('sexo'),
+                "ciudad" => strtoupper($this->input->post('ciudad')),
+                "departamento" => strtoupper($this->input->post('departamento')),
+                "direccion" => $this->input->post('direccion'),
+                "edad" => $this->input->post('edad'),
+                "img" => $img
+            );
+            $insert = $this->acc->Editar_cliente($id,$data);
+
+            if( $insert) {
+
+                echo "Lo datos del Usuario: ".$this->input->post('nombre')." fueron Editado con exito";
+            }
+            else{
+                echo 'Error al editar datos del Usuario '.$this->input->post("nombre").' ';
+            }
+        }else{
+            $id = $this->acc->Buscar_id_account($_SESSION['email']);
             $data = array(
                 "id_cliente" => $id,
                 "nombre" => $this->input->post('nombre'),
                 "telefono" => $this->input->post('telefono'),
                 "sexo" => $this->input->post('sexo'),
                 "ciudad" => $this->input->post('ciudad'),
-                "departamento" => $this->input->post('departamento'),
-                "direccion" => $this->input->post('direccion'),
+                "ciudad" => strtoupper($this->input->post('ciudad')),
+                "departamento" => strtoupper($this->input->post('departamento')),
                 "edad" => $this->input->post('edad'),
-                "img" => $this->upload->data('file_name')
+                "img" => $img
             );
             $insert = $this->acc->Editar_cliente($id,$data);
-
             if( $insert) {
-
-                echo "Lo datos del entrenador: ".$this->input->post('nombre')." fueron Editado con exito";
+                echo "Los datos del usuario: ".$this->input->post('nombre')." fueron Editado con exito";
             }
             else{
-                echo 'Error al Editado datos del entrenador '.$this->input->post("nombre").' ';
+                echo 'Error al editar datos del Usuario '.$this->input->post("nombre").' ';
             }
-        }else{
-
         }
     }
 
@@ -362,4 +404,104 @@ class dashboard extends CI_Controller
             echo $this->acc->borrar($this->input->post("id"));
         }
     }
+
+    public function ciudad(){
+        $id = $this->acc->ciudad($this->input->post("idc"));
+        foreach ($id as $row){
+            echo "<option value='".$row['ciudad']."'>".$row['ciudad']."</option>";
+        }
+    }
+
+    public function departamento(){
+        foreach ($this->acc->departamento() as $row){
+            echo "<option value='".strtoupper($row['departamento'])."'>".strtoupper($row['departamento'])."</option>";
+        }
+
+    }
+
+
+    public function buy($id){
+        //Set variables for paypal form
+        $returnURL = base_url().'paypal/success'; //payment success url
+        $cancelURL = base_url().'paypal/cancel'; //payment cancel url
+        $notifyURL = base_url().'paypal/ipn'; //ipn url
+        //get particular product data
+        $product = $this->acc->plan($id);
+        $userID = 1; //current user id
+        $logo = base_url().'assets/images/codexworld-logo.png';
+
+        $this->paypal_lib->add_field('return', $returnURL);
+        $this->paypal_lib->add_field('cancel_return', $cancelURL);
+        $this->paypal_lib->add_field('notify_url', $notifyURL);
+        $this->paypal_lib->add_field('item_name', $product['Nombre']);
+        $this->paypal_lib->add_field('custom', $userID);
+        $this->paypal_lib->add_field('item_number',  $product['id']);
+        $this->paypal_lib->add_field('amount',  $product['price']);
+        $this->paypal_lib->image($logo);
+
+        $this->paypal_lib->paypal_auto_form();
+    }
+
+
+    public function inser_confirmacion_de_pago(){
+
+            $config['upload_path'] = 'uploads/Confirmacion';
+            $config['allowed_types'] = '*';
+            $config['max_filename'] = '500';
+            $config['encrypt_name'] = true;
+            $config['max_size'] = '1000000'; //1 MB
+            $data['valor'] = false;
+
+            if (isset($_FILES['file']['name'])) {
+                if (0 < $_FILES['file']['error']) {
+                    $data['valor'] = false;
+                } else {
+                    if (file_exists('uploads/Confirmacion/' . $_FILES['file']['name'])) {
+                        echo '<div class="succes">por favor cambie le nombre al documento ya existe/'.$_FILES['file']['name'].'</div>';
+                    } else {
+                        $this->load->library('upload', $config);
+                        if ($this->upload->do_upload('file')) {
+                            $data['valor'] = true;
+                        }
+                        else{
+                            echo 'Error: este error ocurrio por motivo de la subida de datos por favor comunicate con el administrador';
+                            $data['valor'] = false;
+
+                        }
+                    }
+                }
+            }
+
+            if($data['valor']==true){
+                $id = $this->acc->Buscar_id_account($_SESSION['email']);
+                $data = array(
+                    "id_cliente" => $id,
+                    "nombre" => $this->input->post('nombre_pago'),
+                    "cedula" => $this->input->post('cedula_pago'),
+                    "telefono" => $this->input->post('telefono_pago'),
+                    "archivo" => $this->upload->data('file_name')
+
+                );
+                $insert = $this->acc->inser_confirmacion_de_pago($data);
+                if( $insert) {
+                    echo "Los datos del pago del señ@r: ".$this->input->post('nombre_pago')." fueron guardado con exito";
+                }
+                else{
+                    echo 'Error al Agregar datos señ@r: '.$this->input->post("nombre_pago").' ';
+                }
+            }
+            else{
+
+            }
+        }
+
+
+        public function estado_confirmacion(){
+            $id = $this->acc->Buscar_id_account($_SESSION['email']);
+            echo json_encode($this->acc->estados_confirmacion($id));
+        }
+
+
+
+
 }

@@ -15,6 +15,16 @@
     <meta property="og:image:height" content="260" />
 
 
+    <link href="css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="themes/explorer/theme.css" media="all" rel="stylesheet" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/plugins/sortable.js" type="text/javascript"></script>
+    <script src="js/fileinput.js" type="text/javascript"></script>
+    <script src="js/locales/fr.js" type="text/javascript"></script>
+    <script src="js/locales/es.js" type="text/javascript"></script>
+    <script src="themes/explorer/theme.js" type="text/javascript"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="apple-touch-icon" sizes="76x76"href="<?=base_url("assets/img/apple-icon.png");?>"/>
     <link rel="icon" type="image/png"href="<?=base_url("assets/img/favicon.png");?>" />
@@ -48,11 +58,11 @@
     <meta name="theme-color" content="#ffffff">
     <script type="text/javascript" src="https://limonte.github.io/sweetalert2/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://limonte.github.io/sweetalert2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="css/font-awesome.css" />
     <title>FitPersonal</title>
 </head>
 
 <body>
-
 <div class="wrapper">
     <div class="sidebar" data-color="fp" data-image="<?=base_url("assets/img/sidebar-1.jpg");?>">
 
@@ -65,7 +75,7 @@
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li>
-                    <a href="#inicio">
+                    <a href="<?=base_url("");?>">
                         <i class="material-icons">FP</i>
                         <p>Fipersonal</p>
                     </a>
@@ -82,19 +92,31 @@
                         <p>Entrenadores</p>
                     </a>
                 </li>
-                <li class="">
-                    <a href="#fondo">
-                        <i class="material-icons">credit_card</i>
-                        <p>Mi fondos</p>
-                    </a>
-                </li>
 
                 <li class="">
-                    <a href="#fondo">
+                    <a href="#planes">
                         <i class="material-icons">credit_card</i>
                         <p>Planes</p>
                     </a>
                 </li>
+
+                <li class="">
+                    <a href="#fondos">
+                        <i class="material-icons">credit_card</i>
+                        <p>Completar incripcion</p>
+                    </a>
+                </li>
+
+
+                <li class="">
+                    <a href="#pagos">
+                        <i class="material-icons">credit_card</i>
+                        <p>Metodos de pago</p>
+                    </a>
+                </li>
+
+
+
             </ul>
         </div>
     </div>
@@ -174,8 +196,8 @@
                                         <div class="form-group center-block text-center">
                                             <div class="col-sm-12 center-block text-center">
                                                 <div class="fileinput fileinput-new center-block" data-provides="fileinput">
-                                                    <label class="control-label text-center"><i class="col-sm-12 material-icons prefix">add_a_photo</i> Imagen</label>
-                                                    <input type="file" class="col-sm-9form-control" name="file" id="file" required>
+                                                    <label class="control-label text-center"><i class="col-sm-12 material-icons prefix">add_a_photo</i>Imagen Opcional</label>
+                                                    <input type="file" class="col-sm-9form-control" name="file" id="file">
                                                     <br>
                                                     <br>
                                                     <img class="img-responsive center-block" id="imgSalida" style="width: 150px; height: 150px;">
@@ -199,12 +221,15 @@
                                                 <label class="control-label"><i class="material-icons prefix">account_circle</i> Nombre Completo</label>
                                                 <br>
                                                 <br>
-                                                <input id="nombre" placeholder="nombre completo"c name="nombre" type="text" class="form-control" required>
+                                                <br>
+                                                <input id="nombre" placeholder="nombre completo" name="nombre" type="text" class="form-control" required>
                                             </div>
                                         </div>
+
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label"><i class="material-icons prefix">insert_invitation</i>Edad</label>
+                                                <br>
                                                 <br>
                                                 <br>
                                                 <input type="number" placeholder="19" id="edad" name="edad" class="form-control" required >
@@ -216,6 +241,7 @@
                                                 <label class="control-label"><i class="material-icons prefix">phone</i>Telefono</label>
                                                 <br>
                                                 <br>
+                                                <br>
                                                 <input type="number" placeholder="3043651232" id="telefono" name="telefono" class="form-control" required >
                                             </div>
                                         </div>
@@ -225,7 +251,18 @@
                                                 <label class="control-label"><i class="material-icons prefix">info</i>Sexo</label>
                                                 <br>
                                                 <br>
-                                                <input type="text" placeholder="mujer" id="sexo" name="sexo" class="form-control" required >
+                                                <br>
+                                                <select class="form-control" name="sexo" id="sexo" required></select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating" >
+                                                <label class="control-label"><i class="material-icons prefix">location_city</i>Departamento</label>
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <select class="form-control" name="departamento" id="id_departamento" required></select>
                                             </div>
                                         </div>
 
@@ -234,28 +271,23 @@
                                                 <label class="control-label"><i class="material-icons prefix">location_city</i>Ciudad</label>
                                                 <br>
                                                 <br>
-                                                <input type="text"  id="ciudad" name="ciudad" class="form-control" required >
+                                                <br>
+                                                <select class="form-control" name="ciudad" id="id_ciudad" required></select>
                                             </div>
                                         </div>
 
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label"><i class="material-icons prefix">location_city</i>Departamento</label>
-                                                <br>
-                                                <br>
-                                                <input type="text"  id="departamento" name="departamento" class="form-control" required >
-                                            </div>
-                                        </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label"><i class="material-icons prefix">directions_walk</i>Direccion</label>
                                                 <br>
                                                 <br>
+                                                <br>
                                                 <input type="text" id="direccion" name="direccion" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
+
                                     <input type="submit"  id="GE" class="btn btn-primary pull-right"  value="Guardar Datos">
                                     <div class="clearfix"></div>
                                 </form>
@@ -280,27 +312,8 @@
                             </div>
                             <div class="card-content">
 
-                                <form method="post" action="https://gateway.payulatam.com/ppp-web-gateway/pb.zul" accept-charset="UTF-8">
-                                      <input type="image" border="0" alt="" src="http://www.payulatam.com/img-secure-2015/boton_pagar_mediano.png" onClick="this.form.urlOrigen.value = window.location.href;"/>
-                                      <input name="buttonId" type="hidden" value="KTni90CbMpBMeKtwbB/2H7o1rAgHdbJXNSuBF1q71GfYuoZd/ndGKg=="/>
-                                      <input name="merchantId" type="hidden" value="660776"/>
-                                      <input name="accountId" type="hidden" value="663342"/>
-                                      <input name="description" type="hidden" value="Plan 1 H"/>
-                                      <input name="referenceCode" type="hidden" value="00001"/>
-                                      <input name="amount" type="hidden" value="12000"/>
-                                      <input name="tax" type="hidden" value="0"/>
-                                      <input name="taxReturnBase" type="hidden" value="0"/>
-                                      <input name="shipmentValue" value="0" type="hidden"/>
-                                      <input name="currency" type="hidden" value="COP"/>
-                                      <input name="lng" type="hidden" value="es"/>
-                                      <input name="approvedResponseUrl" type="hidden" value="http://fitpersonal.ml/fitpersonal/dashboard/pago_e"/>
-                                      <input name="declinedResponseUrl" type="hidden" value="http://fitpersonal.ml/fitpersonal/dashboard/pago_c"/>
-                                      <input name="pendingResponseUrl" type="hidden" value="http://fitpersonal.ml/fitpersonal/dashboard/pago_p"/>
-                                      <input name="displayShippingInformation" type="hidden" value="YES"/>
-                                      <input name="sourceUrl" id="urlOrigen" value="" type="hidden"/>
-                                      <input name="buttonType" value="SIMPLE" type="hidden"/>
-                                      <input name="signature" value="9c89b7a0084c0fd85fd76116072677fc65b6f587ae9cf518905fd525c455c8f7" type="hidden"/>
-                                </form>
+
+
 
                             </div>
                         </div>
@@ -310,6 +323,164 @@
         </div>
 
 
+        <div class="content" id="planes">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="text-center">
+                        <div class="card">
+                            <div class="card-header" data-background-color="fp">
+                                <h4 class="title">Tabla de precios fitpersonal</h4>
+                                <p class="category">Planes Fitpersonal</p>
+                            </div>
+                            <div class="card-content">
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+       <div id="pago_activo" style="display: block;">
+        <div class="content" id="fondos">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="text-center card-header" data-background-color="fp">
+                                <h4 class="title">Confirmacion de pago</h4>
+                                <p class="category">Complete el formulario para activar tus token</p>
+                            </div>
+                            <div class="card-content">
+
+
+
+                                <form id="form_fondo" class="jsform_fondo" method="post" style="display: none;">
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                            <label class="text-center"> <img class="center-block" src="<?=base_url("/img/FITPERSONAL.png");?>" style="width: 200px;" alt="Logo Sportlife" title="Logo Sportlife"></label>
+                                            <br>
+                                            <label class="text-center"> <img class="center-block img-responsive img-circle" src="https://i1.wp.com/www.starblueshop.com/imagenes_GA/bancolombia-efecty.png?w=640" style="position: relative; left: 300px; width: 200px;"  title="Logo Sportlife"></label>
+                                            <input type="text" class="form-control" disabled value="FitPersonal Tu entrenador en casa">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="row text-center">
+                                            <div class="col-md-12">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label col-md-12" style="font-style: italic; font-size: 18px !important;">Informacion de pago</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                    <label class="control-label">Seleccione Recibo de pago</label>
+                                                    <input id="file" name="file" type="file" class="file" multiple data-show-upload="false" data-show-caption="true" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"><i class="material-icons prefix">account_circle</i> Nombre Completo</label>
+                                                <br>
+                                                <br>
+                                                <input id="nombre_pago" placeholder="nombre completo con el cual consigno" name="nombre_pago" type="text" class="form-control" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"><i class="material-icons prefix">account_circle</i>Cedula</label>
+                                                <br>
+                                                <br>
+                                                <input type="number" placeholder="1063969825" id="cedula_pago" name="cedula_pago" class="form-control" required >
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"><i class="material-icons prefix">phone</i>Telefono</label>
+                                                <br>
+                                                <br>
+                                                <input type="number" placeholder="3043651232" id="telefono_pago" name="telefono_pago" class="form-control" required >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="submit"  class="btn btn-primary pull-right"  value="Guardar Datos">
+                                    <div class="clearfix"></div>
+                                </form>
+
+
+                                <div id="status1" style="display: none;">
+                                    <div class="bg-warning">&nbsp;</div>
+                                    <div class="bg-warning text-center"><label class="text-center" style="color: #000000">Su estado de pago se encuentra en espera</label></div>
+                                    <div class="bg-warning">&nbsp;</div>
+                                </div>
+
+                                <div id="status2" style="display: none;">
+                                    <div class="bg-success">&nbsp;</div>
+                                    <div class="bg-success text-center"><label  class="text-center" style="color: #000000">Su estado de pago fue completado, cuando su plan se agote volvera a ver la opcion de completar pago</label></div>
+                                    <div class="bg-success">&nbsp;</div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       </div>
+
+
+
+        <div class="content" id="pagos">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="text-center">
+                        <div class="card">
+                            <div class="card-header" data-background-color="fp">
+                                <h4 class="title">Metodos de pagos</h4>
+                                <p class="category">Metodos de pagos para fitpersonal</p>
+                            </div>
+                            <div class="card-content">
+
+                                <div class="col-md-12">
+                                    <div class="form-group label-floating">
+                                        <label class="text-center"> <img class="center-block" src="http://revistacorrientes.com/wp-content/uploads/2015/04/logoBANCOLOMBIA-620x197.png" style="width: 300px;" alt="Logo Sportlife" title="Logo Sportlife"></label>
+                                        <input type="text" class="form-control" disabled value="Datos de pago BANCOLOMBIA">
+                                        <input type="text" class="form-control" disabled value="Nombre: CARLOS ANDRES CASTILLA GARCIA">
+                                        <input type="text" class="form-control" disabled value="Numero de cuenta: 951-538355-10">
+                                        <input type="text" class="form-control" disabled value="Numerero celular: 3043651232">
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-12">
+                                    <div class="form-group label-floating">
+                                        <label class="text-center"> <img class="center-block" src="https://cdn.shopify.com/s/files/1/1464/8678/files/efecty.png?v=1479058788" style="width: 200px;" alt="Logo Sportlife" title="Logo Sportlife"></label>
+                                        <input type="text" class="form-control" disabled value="Datos de pago EFECTY">
+                                        <input type="text" class="form-control" disabled value="Nombre: CARLOS ANDRES CASTILLA GARCIA">
+                                        <input type="text" class="form-control" disabled value="Cedula: 1063969856">
+                                        <input type="text" class="form-control" disabled value="Numerero celular: 3043651232">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 

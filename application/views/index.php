@@ -273,7 +273,7 @@ else if($validar =="4"){
 
 
             <!-- Box 3 -->
-            <div class="col-xs-4 f-box animated" data-animation="fadeIn" data-animation-delay="200">
+            <div class="col-xs-4 f-box animated" data-animation="fadeIn" data-animation-delay="200" style="position: relative; left: 150px;">
                 <!-- Icon -->
                 <a class="f-icon">
                     <i class="fa fa-child fa-2x"></i>X5
@@ -287,7 +287,7 @@ else if($validar =="4"){
             <div class="clear"></div>
 
         </div><!-- End Features Boxes -->
-
+        <h3 style="color:whitesmoke;">para comprar los planes debes hacerlo meidiante el panel de tu cuenta </h3>
     </div> <!-- End Features Inner -->
 
 </section><!-- End Features Section -->

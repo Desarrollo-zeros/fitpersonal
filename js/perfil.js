@@ -257,7 +257,7 @@ $(document).ready(function () {
         url: "f/planes",
         success: function(data) {
             for (var i in data) {
-               if(data[i].grupo ==1){
+               if(data[i].grupo == 1){
                    plan1 = '<p class="feature-text "> ' + data[i].tiempo + ' <i class="fa fa-money" aria-hidden="true"></i> $ '+format(data[i].valor)+' COP </p><hr>';
                    $("#plan1").append(plan1);
                }
