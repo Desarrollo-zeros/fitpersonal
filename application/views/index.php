@@ -273,7 +273,7 @@ else if($validar =="4"){
 
 
             <!-- Box 3 -->
-            <div class="col-xs-4 f-box animated" data-animation="fadeIn" data-animation-delay="200" style="position: relative; left: 150px;">
+            <div class="col-xs-4 f-box animated" data-animation="fadeIn" data-animation-delay="200">
                 <!-- Icon -->
                 <a class="f-icon">
                     <i class="fa fa-child fa-2x"></i>X5
