@@ -13,7 +13,6 @@ class dashboard extends CI_Controller
         $this->load->model('account', "acc");
     }
 
-
     public function index(){
         if($_SESSION['rango'] > 0){
             $this->load->view("dashboard/admin");
@@ -110,7 +109,6 @@ class dashboard extends CI_Controller
         }
     }
 
-
     public function Editar_trainer(){
         $config['upload_path'] = 'uploads/trainer';
         $config['allowed_types'] = '*';
@@ -179,7 +177,7 @@ class dashboard extends CI_Controller
                 "img" => $this->upload->data('file_name')
 
             );
-            $insert = $this->acc->Editar_trainer($id,$data);
+            $insert = $this->acc->Editar_trainer($id,$data,"si");
 
             if( $insert) {
 
@@ -190,9 +188,55 @@ class dashboard extends CI_Controller
             }
         }else{
 
+            $id = $this->input->post('id_trainer');
+            $data = array(
+                "nombre" => $this->input->post('nombre'),
+                "cedula" => $this->input->post('cedula'),
+                "estado_civil" => $this->input->post('estado_civil'),
+                "telefono" => $this->input->post('telefono'),
+                "email" => $this->input->post('email'),
+                "ciudad" => $this->input->post('ciudad'),
+                "departamento" => $this->input->post('departamento'),
+                "direccion" => $this->input->post('direccion'),
+                "fecha_nacimiento" => $this->input->post('fecha_nacimiento'),
+                "estudio" => $this->input->post('estudio'),
+                "titulo" => $this->input->post('titulo'),
+                "titulo_deportivo" => $this->input->post('titulo_deportivo'),
+                "horario_disponible" => $this->input->post('horario_disponible'),
+                "dia_disponible" => $this->input->post('dia_disponible'),
+                "empresa1" => $this->input->post('empresa1'),
+                "cargo1" => $this->input->post('cargo1'),
+                "tel1" => $this->input->post('tel1'),
+                "empresa2" => $this->input->post('empresa2'),
+                "cargo2" => $this->input->post('cargo2'),
+                "tel2" => $this->input->post('tel2'),
+                "empresa3" => $this->input->post('empresa3'),
+                "cargo3" => $this->input->post('cargo3'),
+                "tel3" => $this->input->post('tel3'),
+                "empresa4" => $this->input->post('empresa4'),
+                "cargo4" => $this->input->post('cargo4'),
+                "tel4" => $this->input->post('tel4'),
+                "empresa5" => $this->input->post('empresa5'),
+                "cargo5" => $this->input->post('cargo5'),
+                "tel5" => $this->input->post('tel5'),
+                "empresa6" => $this->input->post('empresa6'),
+                "cargo6" => $this->input->post('cargo6'),
+                "tel6" => $this->input->post('tel6'),
+                "info" => $this->input->post('info'),
+
+            );
+            $insert = $this->acc->Editar_trainer($id,$data,"no");
+
+            if( $insert) {
+
+                echo "Los datos del entrenador: ".$this->input->post('nombre')." fueron Editado con exito";
+            }
+            else{
+                echo 'Error al Editado datos del entrenador '.$this->input->post("nombre").' ';
+            }
+
         }
     }
-
 
     public function Guardar_cliente(){
         $config['upload_path'] = 'uploads/cliente';
@@ -346,7 +390,6 @@ class dashboard extends CI_Controller
         }
     }
 
-
     public function datos_entrenador(){
             $id = $this->acc->Buscar_id_account($_SESSION['email']);
             $datos = $this->acc->sacar_datos($id,"datos_entrenador","id_trainer");
@@ -363,6 +406,13 @@ class dashboard extends CI_Controller
         }
     }
 
+    public function fondos(){
+        $id = $this->acc->Buscar_id_account($_SESSION['email']);
+        $datos = $this->acc->fondos($id);
+        if(!empty($datos)){
+            echo json_encode($datos);
+        }
+    }
 
     public function Mostrar_trainer(){
         if (empty($this->input->post("id"))) {
@@ -371,7 +421,6 @@ class dashboard extends CI_Controller
             echo json_encode($this->acc->Mostrar_trainer());
         }
     }
-
 
     public function logout(){
         session_destroy();
@@ -419,7 +468,6 @@ class dashboard extends CI_Controller
 
     }
 
-
     public function buy($id){
         //Set variables for paypal form
         $returnURL = base_url().'paypal/success'; //payment success url
@@ -441,7 +489,6 @@ class dashboard extends CI_Controller
 
         $this->paypal_lib->paypal_auto_form();
     }
-
 
     public function inser_confirmacion_de_pago(){
 
@@ -495,13 +542,42 @@ class dashboard extends CI_Controller
             }
         }
 
-
-        public function estado_confirmacion(){
+    public function estado_confirmacion(){
             $id = $this->acc->Buscar_id_account($_SESSION['email']);
             echo json_encode($this->acc->estados_confirmacion($id));
         }
 
+    public function form_solicitud(){
+        setlocale (LC_TIME, "es_CO");
+        date_default_timezone_set('America/Bogota');
+        $id = $this->acc->Buscar_id_account($_SESSION['email']);
+        $data = array(
+            "id_cliente" => $id,
+            "id_entrenador" => $this->input->post("id_entrenador_s"),
+            "fecha_de_solicitud" => date("F j, Y, g:i a")
+        );
+        $insert = $this->acc->form_solicitud($data);
 
+        if( $insert) {
+            echo "Datos guardados";
+        }
+        else{
+            echo 'Error al guardar los datos';
+        }
+    }
+
+    public function ver_solicitud_entrenador(){
+        $id = $this->acc->Buscar_id_account($_SESSION['email']);
+
+        if(!empty($this->acc->ver_solicitud_entrenador($id))){
+            echo json_encode($this->acc->ver_solicitud_entrenador($id));
+        }
+        else{
+            $data = array("status" => 0);
+            echo json_encode($data);
+        }
+
+    }
 
 
 }

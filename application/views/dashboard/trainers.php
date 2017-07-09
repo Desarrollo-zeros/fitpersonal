@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="en">
 <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:locale" content="es_ES" >
-    <meta property="og:type" content="website" >
-    <meta property="og:title" content="Fitpersonal" >
-    <meta property="og:description" content="Fitpersonal entrenador en casa " >
-    <meta property="og:url" content="https://FitPersonal.ml" >
-    <meta property="og:site_name" content="FitPersonal" >
-    <meta property="og:image" content="https://www.facebook.com/wowzeros/" >
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="460" />
-    <meta property="og:image:height" content="260" />
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="apple-touch-icon" sizes="76x76"href="<?=base_url("assets/img/apple-icon.png");?>"/>
     <link rel="icon" type="image/png"href="<?=base_url("assets/img/favicon.png");?>" />
@@ -49,7 +34,7 @@
     <meta name="theme-color" content="#ffffff">
     <script type="text/javascript" src="https://limonte.github.io/sweetalert2/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://limonte.github.io/sweetalert2/dist/sweetalert2.min.css">
-    <title>FitPersonal</title>
+    <title>Fitpersonal</title>
 </head>
 
 <body>
@@ -66,7 +51,7 @@
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li>
-                    <a href="<?=base_url("");?>">
+                    <a href="#">
                         <i class="material-icons">FP</i>
                         <p>Fipersonal</p>
                     </a>
@@ -108,7 +93,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="material-icons">dashboard</i>
                                 <p class="hidden-lg hidden-md">Dashboard</p>
                             </a>
@@ -121,36 +106,39 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <div id="notificacion"></div>
-                               <!-- <li><a href="#">Mike John responded to your email</a></li>
-                                <li><a href="#">You have 5 new tasks</a></li>
-                                <li><a href="#">You're now friend with Andrew</a></li>
-                                <li><a href="#">Another Notification</a></li>
-                                <li><a href="#">Another One</a></li> -->
+                                <!-- <li><a href="#">Mike John responded to your email</a></li>
+                                 <li><a href="#">You have 5 new tasks</a></li>
+                                 <li><a href="#">You're now friend with Andrew</a></li>
+                                 <li><a href="#">Another Notification</a></li>
+                                 <li><a href="#">Another One</a></li> -->
                             </ul>
                         </li>
                         <li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="material-icons">person</i>Entrenador
+                                <i class="material-icons">person</i>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="">Inicio</a></li>
                                 <li><a href="<?=base_url('dashboard/logout');?>">Cerrar Seccion</a></li>
                             </ul>
                         </li>
+                        <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                            <p class="hidden-lg hidden-md">Profile</p>
+                        </a>
                         </li>
                     </ul>
 
 
-                  <!--  <form class="navbar-form navbar-right" role="search">
-                        <div class="form-group  is-empty">
-                            <input type="text" class="form-control" placeholder="Search">
-                            <span class="material-input"></span>
-                        </div>
-                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                            <i class="material-icons">search</i><div class="ripple-container"></div>
-                        </button>
-                    </form> -->
+                    <!--  <form class="navbar-form navbar-right" role="search">
+                          <div class="form-group  is-empty">
+                              <input type="text" class="form-control" placeholder="Search">
+                              <span class="material-input"></span>
+                          </div>
+                          <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                              <i class="material-icons">search</i><div class="ripple-container"></div>
+                          </button>
+                      </form> -->
                 </div>
             </div>
         </nav>
@@ -187,6 +175,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
 
                                     <div class="row">
@@ -247,33 +236,33 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-4">
-                                        <div class="form-group label-floating" >
-                                            <label class="control-label"><i class="material-icons prefix">location_city</i>Departamento <div id="dep" style="font-size: 10px;"></div></label>
-                                            <br>
-                                            <br>
-                                            <select class="form-control" name="departamento" id="id_departamento" required></select>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating" >
+                                                <label class="control-label"><i class="material-icons prefix">location_city</i>Departamento</label>
+                                                <br>
+                                                <br>
+                                                <select class="form-control" name="departamento" id="id_departamento" required></select>
+                                            </div>
                                         </div>
-                                    </div>
 
-
-                                    <div class="col-md-4">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label"><i class="material-icons prefix">location_city</i>Ciudad <div id="ciu" style="font-size: 10px;"></div></label>
-                                            <br>
-                                            <br>
-                                            <select class="form-control" name="ciudad" id="id_ciudad" required></select>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label"><i class="material-icons prefix">location_city</i>Ciudad</label>
+                                                <br>
+                                                <br>
+                                                <select class="form-control" name="ciudad" id="id_ciudad" required></select>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="col-md-4">
+                                        <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label"><i class="material-icons prefix">directions_walk</i>Direccion</label>
                                                 <br>
                                                 <br>
                                                 <input type="text" id="direccion" name="direccion" class="form-control" required>
                                             </div>
-                                    </div>
+                                        </div>
                                         <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label"><i class="material-icons prefix">insert_invitation</i>Fecha nacimiento</label>
@@ -295,15 +284,15 @@
 
                                     <div class="row">
                                         <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="control-label"><i class="material-icons prefix">book</i>Estudio</label>
-                                                    <select id="estudio" name="estudio" class="col-sm-12">
-                                                        <option value="Bachiller">Bachiller</option>
-                                                        <option value="Tecnico">Tecnico</option>
-                                                        <option value="Tecnólogo">Tecnólogo</option>
-                                                        <option value="Universitario">Universitario</option>
-                                                    </select>
-                                                </div>
+                                            <div class="form-group">
+                                                <label class="control-label"><i class="material-icons prefix">book</i>Estudio</label>
+                                                <select id="estudio" name="estudio" class="col-sm-12">
+                                                    <option value="Bachiller">Bachiller</option>
+                                                    <option value="Tecnico">Tecnico</option>
+                                                    <option value="Tecnólogo">Tecnólogo</option>
+                                                    <option value="Universitario">Universitario</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -382,7 +371,7 @@
                                                     Empresa: <input id="empresa1" name="empresa1" placeholder="Nombre de la empresa" type="text" class="form-control" required>
                                                     Cargo:<input id="cargo1" name="cargo1" placeholder="Cargo" type="text" class="form-control" required>
                                                     Telefono<input id="tel1" name="tel1" placeholder="Telefono" type="number" class="form-control" required>
-                                                   </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -396,7 +385,7 @@
                                                     Empresa: <input id="empresa2" name="empresa2" placeholder="Nombre de la empresa" type="text" class="form-control">
                                                     Cargo:<input id="cargo2" name="cargo2" placeholder="Cargo" type="text" class="form-control">
                                                     Telefono:<input id="tel2" name="tel2" placeholder="Telefono" type="number" class="form-control">
-                                                   </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -446,7 +435,7 @@
                                                     Empresa: <input id="empresa5" name="empresa5" placeholder="Nombre de la empresa" type="text" class="form-control">
                                                     Cargo:<input id="cargo5" name="cargo5" placeholder="Cargo" type="text" class="form-control">
                                                     Telefono:<input id="tel5" name="tel5" placeholder="Telefono" type="number" class="form-control">
-                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -509,6 +498,9 @@
 
 
 
+
+
+
         <footer class="footer">
             <div class="container-fluid">
                 <nav class="pull-left">
@@ -556,19 +548,3 @@
 <script src="<?=base_url("assets/js/demo.js");?>"></script>
 
 </html>
-
-<!-- Chatra {literal} -->
-<script>
-    (function(d, w, c) {
-        w.ChatraID = 'wHs2WSifA3cziTQ54';
-        var s = d.createElement('script');
-        w[c] = w[c] || function() {
-                (w[c].q = w[c].q || []).push(arguments);
-            };
-        s.async = true;
-        s.src = (d.location.protocol === 'https:' ? 'https:': 'http:')
-            + '//call.chatra.io/chatra.js';
-        if (d.head) d.head.appendChild(s);
-    })(document, window, 'Chatra');
-</script>
-<!-- /Chatra {/literal} -->

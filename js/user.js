@@ -1,7 +1,14 @@
 $(document).ready(function () {
-    $("#sexo").html('<option value="Hombre">Hombre</option><option value="Mujer">Mujer</option>');
+    if($("imgSalida").val() != null){
+        $("#file").prop('required',true);
+    }
+    else{
+        $("#file").prop('required',false);
+    }
 
-    window.setInterval("estado_confirmacion()", 2000);
+    $("#sexo").html('<option value="Hombre">Hombre</option><option value="Mujer">Mujer</option>');
+    window.setInterval("estado_confirmacion()", 1000);
+    window.setInterval("solicitud()",1000);
 })
 
 
@@ -107,6 +114,53 @@ $(document).ready(function(){
 
 
 $(document).ready(function(){
+    $('form.form_solicitud').on('submit', function(form){
+        form.preventDefault();
+
+        if($("#id_entrenador_s").val().length<1){
+            swal("Mensaje","Seleccione un entrenador","warning");
+        }
+        else{
+            var formData = new FormData($(this)[0]);
+            swal({
+                title: "Mensaje!",
+                text: "Desea Solicitar este entrenador?",
+                type: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#08dd79',
+                cancelButtonColor: '#dd3c00',
+                confirmButtonText: 'Si',
+                cancelButtonText: "No"
+            }).then(function () {
+                $.ajax({
+                    url: "dashboard/form_solicitud",
+                    type: 'POST',
+                    data: formData,
+                    async: false,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        if(data != ""){
+                            swal("Mensaje",data,"success");
+                        }else{
+                            swal("Mensaje",data,"success");
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown)
+                    {
+                        swal("Mensaje","error","success");
+                    }
+                });
+            });
+
+        }
+    });
+});
+
+
+
+$(document).ready(function(){
 
     $('form.jsform_fondo').on('submit', function(form){
         form.preventDefault();
@@ -169,7 +223,7 @@ $(document).ready(function(){
         url: url,
         success: function(data) {
             for (var i in data) {
-
+                localStorage.setItem("nombre", data[i].nombre);
                 if(data[i].rango > 0) {
                     if (data[i].rango.length > 0) {
                         $("#Es_name").append("<span style='color: #008fb3;'>" + data[i].account + "</span>");
@@ -238,9 +292,11 @@ $(document).ready(function(){
                     $("#cargo6").val(data[i].cargo6);
                     $("#tel6").val(data[i].tel6);
                     $("#info").val(data[i].info);
-                     $("#ciu").append(data[i].ciudad);
-                     $("#dep").append(data[i].departamento);
+                    $("#ciu").append(data[i].ciudad);
+                    $("#dep").append(data[i].departamento);
                     $("#id_trainer").val(data[i].id_trainer);
+                     $("#id_departamento").append('<option class="active" value='+data[i].departamento+'>'+data[i].departamento+'</option>');
+                     $("#id_ciudad").append('<option class="active" value='+data[i].ciudad+'>'+data[i].ciudad+'</option>');
                     if ($("#id_trainer").val().length > 0) {
                         $("#GE").val("Editar Datos");
                     }
@@ -461,7 +517,6 @@ $(document).ready(function () {
 
 
 
-
 function Borrar(id) {
     swal({
         title: 'Mensaje',
@@ -490,7 +545,6 @@ function Borrar(id) {
     })
 
 }
-
 
 
 function contractar(id) {
@@ -576,8 +630,7 @@ $(document).ready(function () {
     });
 });
 
-function format(input)
-{
+function format(input) {
     return input.replace(/\D/g, "")
         .replace(/([0-9])([0-9]{3})$/, '$1.$2')
         .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ",");
@@ -599,4 +652,144 @@ $(document).ready(function() {
 });
 
 
+$(document).ready(function() {
+    $.ajax({
+        type: "POST",
+        dataType: "JSON",
+        data:{
+            id: "1"
+        },
+        url: "f/Mostrar_trainer",
+        success: function(data) {
+            for (var i in data) {
+                if(data[i].status == 3){
+                    $("#entreandores_info").append('<option value="'+data[i].id+'">'+data[i].nombre+'</option>');
+                }
+            }
+        }
+    });
+});
+
+
+$(document).ready(function() {
+    var t = "";
+    $("#entreandores_info").on({
+        change: function() {
+            $.ajax({
+                type: "POST",
+                dataType: "JSON",
+                data:{
+                    id: "1"
+                },
+                url: "f/Mostrar_trainer",
+                success: function(data) {
+                    for (var i in data) {
+                        if(data[i].id===$("#entreandores_info").val()){
+                        $("#image_entrenador").attr("src", 'uploads/trainer/' + data[i].img);
+                        $("#name_entrenador").empty();
+                        $("#name_entrenador").append('<h5 style="color: orangered;">Nombre: '+data[i].nombre+'</h5>');
+                        $("#dias_disponible").empty();
+                        $("#dias_disponible").append('<h5 style="color: orangered;">Dias: '+data[i].dia_disponible+'</h5>');
+                        $("#mes_disponible").empty();
+                        $("#mes_disponible").append('<h5 style="color: orangered;"> Mes: '+mes_disponible()+'<h6>');
+                        $("#horario_disponible").empty();
+                        $("#horario_disponible").append('<h5 style="color: orangered;"> Horario: '+data[i].horario_disponible+'</h5>');
+                        $("#edad_entrenador").empty();
+                        $("#edad_entrenador").append('<h5 style="color: orangered;">Edad: '+calculateAge(data[i].fecha_nacimiento)+'</h5>');
+                        $("#celular_entrenador").empty();
+                        $("#celular_entrenador").append('<h5 style="color: orangered;">Celular: '+data[i].telefono+'</h5>');
+                        $("#fondo_disponible").empty();
+                        $("#fondo_disponible").append('<h5 style="color: orangered;">Fondo Disponible: $'+format(localStorage.getItem("fondo"))+' Pesos</h5>');
+                        $("#Saldo_disponible").empty();
+                        $("#Saldo_disponible").append('<h5 style="color: orangered;">Primer saldo: $'+format(localStorage.getItem("efectivo"))+' Pesos</h5>');
+                        $("#Estado_disponible").empty();
+                        $("#Estado_disponible").append('<h5 style="color: orangered;">Estado de cuenta: Disponible</h5>');
+                        $("#id_entrenador_s").empty();
+                        $("#id_entrenador_s").val(data[i].id);
+                        }
+                    }
+                }
+            });
+        }
+
+
+
+    });
+});
+
+
+$(document).ready(function() {
+    $.ajax({
+        type: "POST",
+        dataType: "JSON",
+        url: "dashboard/fondos",
+        success: function(data) {
+            for (var i in data) {
+                localStorage.setItem("id", data[i].id);
+                localStorage.setItem("id_account", data[i].id_account);
+                localStorage.setItem("fondo", data[i].fondo);
+                localStorage.setItem("medio_pago", data[i].medio_pago);
+                localStorage.setItem("efectivo", data[i].Efectivo);
+            }
+        }
+    });
+});
+
+
+function solicitud() {
+    $.ajax({
+        type: "POST",
+        dataType: "JSON",
+        url: "dashboard/ver_solicitud_entrenador",
+        success: function(data) {
+                for (var i in data) {
+                    if (data[i].status == 1) {
+                        $("#solicitud1").css("display", "block");
+                        $("#form_solicitud").css("display", "none");
+                        $("#solicitud2").css("display", "none");
+
+                    }
+                    else if (data[i].status == 2) {
+                        $("#solicitud2").css("display", "block");
+                        $("#form_solicitud").css("display", "none");
+                        $("#solicitud1").css("display", "none");
+                    }
+                    else {
+                        $("#form_solicitud").css("display", "block");
+                        $("#solicitud2").css("display", "none");
+                        $("#solicitud1").css("display", "none");
+                    }
+                }
+        }
+    });
+}
+
+function mes_disponible() {
+    var month = new Array();
+    month[0] = "Enero";
+    month[1] = "Febrero";
+    month[2] = "Marzo";
+    month[3] = "Abril";
+    month[4] = "Mayo";
+    month[5] = "Junio";
+    month[6] = "Julio";
+    month[7] = "Agosto";
+    month[8] = "Septiembre";
+    month[9] = "Octubre";
+    month[10] = "Noviembre";
+    month[11] = "Diciembre";
+
+    var d = new Date();
+    var n = month[d.getMonth()];
+    return n;
+}
+
+
+    function calculateAge(birthday) {
+        var birthday_arr = birthday.split("-");
+        var birthday_date = new Date(birthday_arr[0], birthday_arr[1] - 1, birthday_arr[2]);
+        var ageDifMs = Date.now() - birthday_date.getTime();
+        var ageDate = new Date(ageDifMs);
+        return Math.abs(ageDate.getUTCFullYear() - 1970);
+    }
 

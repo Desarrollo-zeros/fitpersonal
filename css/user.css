@@ -285,3 +285,25 @@ body {
     font-weight:600;
     text-shadow: 0px 1px 0px rgba(250,250,250, .75);
 }
+
+.card .card-content {
+    padding: 20px;
+    border-radius: 0 0 2px 2px;
+}
+
+.ms-container .ms-selectable, .ms-container .ms-selection{
+    background: rgba(255,255,255,.15) !important;
+    color: #337ab7 !important;
+    float: left !important;
+    width: 45% !important;
+}
+
+.ms-container .ms-selection li.ms-elem-selection{
+    color: #9c27b0  !important;
+
+}
+
+.ms-container .ms-selectable li.ms-elem-selectable{
+    color: #42b615 !important;
+}
+
