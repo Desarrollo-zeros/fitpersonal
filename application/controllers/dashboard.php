@@ -544,7 +544,15 @@ class dashboard extends CI_Controller
 
     public function estado_confirmacion(){
             $id = $this->acc->Buscar_id_account($_SESSION['email']);
-            echo json_encode($this->acc->estados_confirmacion($id));
+
+            if(!empty($this->acc->estados_confirmacion($id))){
+                echo json_encode($this->acc->estados_confirmacion($id));
+            }
+            else{
+                $data = array("status" => 0);
+                echo json_encode($data);
+            }
+
         }
 
     public function form_solicitud(){
