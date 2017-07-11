@@ -1,8 +1,8 @@
-# ![logo](http://fitpersonal.ml/fitpersonal/images/FITPERSONAL.png) Fitpersonal(master)
+# ![logo](http://fitpersonal.ml/FITPERSONAL.png) Fitpersonal(master)
 
 ## Copyright
 
-© 2017 Dev Zeros.Todos los derechos reservados.
+Â© 2017 Dev Zeros.Todos los derechos reservados.
 
 ## Autor
 
