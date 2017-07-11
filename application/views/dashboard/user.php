@@ -60,7 +60,7 @@
     <script type="text/javascript" src="https://limonte.github.io/sweetalert2/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://limonte.github.io/sweetalert2/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="css/font-awesome.css" />
-  
+
     <title>FitPersonal</title>
 </head>
 
@@ -95,12 +95,7 @@
                         <p>Solicitar Entrenador</p>
                     </a>
                 </li>
-                <li class="">
-                    <a href="#planes">
-                        <i class="material-icons">credit_card</i>
-                        <p>Planes</p>
-                    </a>
-                </li>
+
 
                 <li class="">
                     <a href="#pago_activo">
@@ -405,26 +400,7 @@
                     </div>
                 </div>
             </div>
-
-        <div class="content" id="planes">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="text-center">
-                        <div class="card">
-                            <div class="card-header" data-background-color="fp">
-                                <h4 class="title">Tabla de precios fitpersonal</h4>
-                                <p class="category">Planes Fitpersonal</p>
-                            </div>
-                            <div class="card-content">
-
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
 
         <div id="pago_activo" style="display: block;">
         <div class="content" id="fondos">
