@@ -1,4 +1,4 @@
-# ![logo](http://fitpersonal.ml/FITPERSONAL.png) Fitpersonal(master)
+# ![logo](http://fitpersonal.co/FITPERSONAL.png) Fitpersonal(master)
 
 ## Copyright
 
