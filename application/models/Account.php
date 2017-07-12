@@ -316,8 +316,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         public function Mostrar_cliente(){
             $this->db->select("*");
-            $this->db->from("datos_cliente,account,solicitud_entrenador");
-            $this->db->where("datos_cliente.id_cliente = account.id");
+            $this->db->from("account");
+            $this->db->join("datos_cliente","datos_cliente.id_cliente = account.id");
             $query = $this->db->get();
             return $query->result_array();
         }
