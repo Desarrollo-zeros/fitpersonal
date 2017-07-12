@@ -72,9 +72,9 @@ class General_model extends CI_Model
             $enviar = "C:/xampp/htdocs/Fitpersonal/uploads/Confirmacion/".$att;
         }
         else{
-            $enviar = "var/www/html/fitpersonal/uploads/Confirmacion/".$att;
+            $enviar = "/var/www/html/fitpersonal/uploads/Confirmacion".$att;
         }
-        $img = "<a href='".base_url()."'><img src='http://fitpersonal.co/FITPERSONAL.png' style='width: 300px;'></a>";
+        $img = "<a href='".base_url()."'><img src='https://fitpersonal.co/FITPERSONAL.png' style='width: 300px;'></a>";
         $this->email->initialize($this->email());
         $this->email->from('wowzeros2@gmail.com');
         $this->email->to("carloscastilla31@gmail.com");
