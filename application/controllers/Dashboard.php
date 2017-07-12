@@ -422,6 +422,10 @@ class dashboard extends CI_Controller
         }
     }
 
+    public function Mostrar_cliente(){
+            echo json_encode($this->acc->Mostrar_cliente());
+    }
+
     public function logout(){
         session_destroy();
         $this->session->unset_userdata('userData');
@@ -491,7 +495,8 @@ class dashboard extends CI_Controller
     }
 
     public function inser_confirmacion_de_pago(){
-
+            setlocale (LC_TIME, "es_CO");
+            date_default_timezone_set('America/Bogota');
             $config['upload_path'] = 'uploads/Confirmacion';
             $config['allowed_types'] = '*';
             $config['max_filename'] = '500';
@@ -526,11 +531,13 @@ class dashboard extends CI_Controller
                     "nombre" => $this->input->post('nombre_pago'),
                     "cedula" => $this->input->post('cedula_pago'),
                     "telefono" => $this->input->post('telefono_pago'),
+                    "fecha_de_solicitud" =>  date("F j, Y, g:i a"),
                     "archivo" => $this->upload->data('file_name')
 
                 );
                 $insert = $this->acc->inser_confirmacion_de_pago($data);
                 if( $insert) {
+                    $this->acc->enviar_msm_solicitud_confirmacion_pago($id);
                     echo "Los datos del pago del señ@r: ".$this->input->post('nombre_pago')." fueron guardado con exito";
                 }
                 else{
@@ -540,7 +547,7 @@ class dashboard extends CI_Controller
             else{
 
             }
-        }
+        } //bien
 
     public function estado_confirmacion(){
             $id = $this->acc->Buscar_id_account($_SESSION['email']);
@@ -559,15 +566,18 @@ class dashboard extends CI_Controller
         setlocale (LC_TIME, "es_CO");
         date_default_timezone_set('America/Bogota');
         $id = $this->acc->Buscar_id_account($_SESSION['email']);
+        $id_trainer = $this->input->post("id_entrenador_s");
         $data = array(
             "id_cliente" => $id,
-            "id_entrenador" => $this->input->post("id_entrenador_s"),
+            "id_entrenador" => $id_trainer,
             "fecha_de_solicitud" => date("F j, Y, g:i a")
         );
         $insert = $this->acc->form_solicitud($data);
 
         if( $insert) {
+            $this->acc->enviar_msm_solicitud_entrenador($id,$id_trainer);
             echo "Datos guardados";
+
         }
         else{
             echo 'Error al guardar los datos';
@@ -587,5 +597,10 @@ class dashboard extends CI_Controller
 
     }
 
+    public function wpp(){
+
+
+
+    }
 
 }

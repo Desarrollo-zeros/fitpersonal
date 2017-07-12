@@ -66,7 +66,7 @@
         <div class="sidebar-wrapper">
             <ul class="nav">
                 <li>
-                    <a href="#inicio">
+                    <a href="<?=base_url("");?>">
                         <i class="material-icons">FP</i>
                         <p>Fipersonal</p>
                     </a>
@@ -215,11 +215,11 @@
                     <div class="text-center">
                         <div class="card">
                                 <div class="card-header" data-background-color="fp">
-                                    <h4 class="title">Datos Personales de los Entrenadores</h4>
-                                    <p class="category">Lista de Entrenadores</p>
+                                    <h4 class="title">Datos Personales de los Clientes</h4>
+                                    <p class="category">Lista de cliente</p>
                                 </div>
                                 <div class="card-content">
-
+                                    <div class="container"> <div class="row col-md-11"> <div id="cliente_"></div> </div> </div>
                                 </div>
                         </div>
                     </div>

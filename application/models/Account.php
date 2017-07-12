@@ -314,6 +314,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
 
 
+        public function Mostrar_cliente(){
+            $this->db->select("*");
+            $this->db->from("datos_cliente,account,solicitud_entrenador");
+            $this->db->where("datos_cliente.id_cliente = account.id");
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+
         public function planes(){
             $this->db->select("*");
             $this->db->from("planes");
@@ -438,6 +446,81 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->db->where("id_cliente",$id);
             $query = $this->db->get();
             return $query->result_array();
+        }
+
+        function enviar_msm_solicitud_confirmacion_pago($id){
+            $status = "";
+            $archivo = "";
+            $this->db->select("*");
+            $this->db->from("datos_cliente,confirmacion_pago");
+            $this->db->where("datos_cliente.id_cliente",$id);
+            $this->db->where("confirmacion_pago.id_cliente",$id);
+            $query = $this->db->get();
+            foreach ($query->result() as $row) {
+                if($row->status == 1){
+                    $status = "Pendiente";
+                }
+                if($row->status == 2){
+                    $status = "Completado";
+                }
+                $string = '<br><br>           
+                 El cliente '.$row->nombre.' acaba de hacer una solicitud de pago en la fecha '.$row->fecha_de_solicitud.', sus datos son: 
+                 <br>Nombre: '.$row->nombre.'
+                 <br>Cedula: '.$row->cedula.'
+                 <br>Telefono: '.$row->telefono.'
+                 <br>Estado: '.$status.'
+                 <br>
+                 <br>Atentamente: Dev-Zeros administrador Fitpersonal
+                ';
+                $archivo = $row->archivo;
+                $asunto = "SOLICITUD DE CONFIRMACION DE PAGO";
+            }
+             $this->General->enviar_msm("3043651232",strtoupper($string));
+             return $this->General->enviar_email(strtoupper($string),$archivo,$asunto);
+        }
+
+        function ver_id_trainer($id_trainer){
+            $string = "";
+            $this->db->select("*");
+            $this->db->from("datos_entrenador");
+            $this->db->where("id",$id_trainer);
+            $query = $this->db->get();
+            foreach ($query->result() as $row) {
+                $string = '<br>Los datos del entrenador solicitado son:<br>
+                Nombre: '.$row->nombre.'<br>
+                Correo eletronico: '.$row->email.'<br>
+                Telefono: '.$row->telefono.'<br>';
+            }
+
+            return $string;
+        }
+
+        function enviar_msm_solicitud_entrenador($id,$id_trainer){
+            $string = "";
+            $this->db->select("*");
+            $this->db->from("datos_cliente,solicitud_entrenador,account");
+            $this->db->where("account.id", $id);
+            $this->db->where("datos_cliente.id_cliente",$id);
+            $this->db->where("solicitud_entrenador.id_cliente",$id);
+            $query = $this->db->get();
+            foreach ($query->result() as $row) {
+                $string ='<br><br>
+                El cliente '.$row->nombre.' ha solicitado a un entrenador en la fecha:  
+                '.$row->fecha_de_solicitud.'  los datos del cliente son: <br>
+                Nombre: '.$row->nombre.'<br>
+                Correo eletronico: '.$row->email.'<br>
+                Telefono: '.$row->telefono.'<br>
+                Edad: '.$row->edad.'<br>
+                Departamento: '.$row->departamento.'<br>
+                Ciudad: '.$row->ciudad.'<br>
+                Direccion: '.$row->direccion.'<br>
+                '.$this->ver_id_trainer($id_trainer).'
+                 <br>
+                 <br>Atentamente: Dev-Zeros administrador Fitpersonal
+                ';
+                $asunto = "SOLICITUD DE ENTRENADOR";
+            }
+            return $this->General->enviar_email(strtoupper($string),"",$asunto);
         }
 
     }

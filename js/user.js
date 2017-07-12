@@ -517,6 +517,9 @@ $(document).ready(function () {
 
 
 
+
+
+
 function Borrar(id) {
     swal({
         title: 'Mensaje',
@@ -545,6 +548,32 @@ function Borrar(id) {
     })
 
 }
+
+$(document).ready(function () {
+    var trainer = "";
+    $.ajax({
+        type: "POST",
+        dataType: "JSON",
+        url: "dashboard/Mostrar_cliente",
+        success: function(data) {
+            for (var i in data) {
+                    trainer = '<div class="col-lg-3 col-sm-6"> ' +
+                        '<div class="card hovercard"> ' +
+                        '<div class="cardheader"> </div> ' +
+                        '<div class="avatar"> <img alt="" src="uploads/cliente/' + data[i].img + '"> </div> ' +
+                        '<div class="info"> <div class="title"> ' +
+                        '<a target="_blank" href="" style="color: rgb(106,106,106);">' + data[i].nombre + '</a></div> ' +
+                        '<div class="desc" style="color: rgb(106,106,106);">Celular: ' + data[i].telefono + '</div> ' +
+                        '<div class="desc" style="color: rgb(106,106,106);">Correo: ' + data[i].email + '</div>' +
+                        '<div class="desc" style="color: rgb(106,106,106);">Departamento: ' + data[i].departamento + '</div>' +
+                        '<div class="desc" style="color: rgb(106,106,106);">Ciudad: ' + data[i].ciudad + '</div>' +
+                        '<div class="desc" style="color: rgb(106,106,106);">Edad: ' + data[i].edad + '</div></div> ' +
+                        ' </div>';
+                    $("#cliente_").append(trainer);
+            }
+        }
+    });
+});
 
 
 function contractar(id) {

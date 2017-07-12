@@ -65,4 +65,52 @@ class General_model extends CI_Model
         $this->email->send();
     }
 
+
+    public function enviar_email($string,$att,$asunto){
+        $config['charset'] = 'iso-8859-1';
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            $enviar = "C:/xampp/htdocs/Fitpersonal/uploads/Confirmacion/".$att;
+        }
+        else{
+            $enviar = "var/www/html/fitpersonal/uploads/Confirmacion/".$att;
+        }
+        $img = "<a href='".base_url()."'><img src='http://fitpersonal.co/FITPERSONAL.png' style='width: 300px;'></a>";
+        $this->email->initialize($this->email());
+        $this->email->from('wowzeros2@gmail.com');
+        $this->email->to("carloscastilla31@gmail.com");
+        $this->email->cc("warlock1130@hotmail.com");
+        $this->email->bcc('wowzeros2@gmail.com');
+        $this->email->subject('Fitpersonal.co '.$asunto.' ');
+        $this->email->message($img.$string);
+        $this->email->attach($enviar);
+        $this->email->send();
+        return json_encode($this->email->print_debugger());
+    }
+
+    public function enviar_msm($numero,$msm)
+    {
+        $codapi = "7z45z7o97bi";
+        $remitente = "Fitpersonal.co";
+        $mensaje = $msm;
+        $destinatario = $numero;
+        $idgrupo = "1";
+        $fecha_envio = "";
+        $idlote = "";
+        $url = "http://api.tuloenvias.com/sms/";
+        $url = str_replace(" ", '%20', $url);
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "codapi=" . $codapi . "&remitente=" . $remitente . "&mensaje=" . $mensaje . "&destinatario=" . $destinatario .
+            "&idgrupo=" . $idgrupo . "&fecha_envio=" . $fecha_envio . "&idlote=" . $idlote . "");
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_VERBOSE, 1);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        return $result;
+    }
+
 }
